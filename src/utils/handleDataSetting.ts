@@ -1,0 +1,103 @@
+import envConfig from "../../config";
+
+export const handleDataSetting = async (settingData: any[]) => {
+  if (settingData.length === 0 && Array.isArray(settingData)) return;
+  const settings = settingData.reduce((acc: any, setting: any) => {
+    acc[setting.KeySetting] = setting.DataSetting;
+    return acc;
+  }, {});
+  const {
+    Logo,
+    Hotline,
+    Phone,
+    Email,
+    Slogan,
+    Map,
+    Careers,
+    TermsAndConditions,
+    PrivacyPolicy,
+    Contentproduction,
+    BusinessPhilosophy,
+    BusinessLicense,
+    CareerGoals,
+    Address,
+    AddressMain,
+    AboutCompany,
+    CompanyName,
+    Compliance,
+    MinistryOfIndustry,
+    Facebook,
+    Zalo,
+    Instagram,
+    Twitter,
+    Pinterest,
+    LinkedIn,
+    Youtube,
+    FacebookChat,
+    ImageABoutUs,
+    ShowImageISO,
+    IsHiddenCategories,
+    Infor1,
+    Infor2,
+    ContactInformation,
+    NameAdress,
+    ShowroomAddress,
+    WarrantyPolicy,
+    ClientConsultant,
+    Technicalassistance,
+    PaymentGuide,
+    Informationsecurity,
+    Tiktok,
+    Website,
+    WebsiteUs
+  } = settings;
+  let LogoUrl = envConfig.NEXT_PUBLIC_CDN + Logo.replace(",", "");
+  let ImageABoutUsUrl =
+    envConfig.NEXT_PUBLIC_CDN + (ImageABoutUs||"/images/bg-header.jpg").replace(",", "");
+  let data = {
+    Logo: LogoUrl,
+    Email,
+    Phone,
+    Slogan,
+    Hotline,
+    AboutCompany,
+    ImageABoutUs: ImageABoutUsUrl,
+    Map,
+    Contentproduction,
+    Address,
+    AddressMain,
+    Careers,
+    PrivacyPolicy,
+    TermsAndConditions,
+    CompanyName,
+    Compliance,
+    MinistryOfIndustry,
+    Facebook,
+    Zalo,
+    BusinessPhilosophy,
+    BusinessLicense,
+    CareerGoals,
+    ShowImageISO,
+    IsHiddenCategories,
+    Infor1,
+    Infor2,
+    ContactInformation,
+    NameAdress,
+    ShowroomAddress,
+    WarrantyPolicy,
+    ClientConsultant,
+    Technicalassistance,
+    PaymentGuide,
+    Informationsecurity,
+    Tiktok,
+    Instagram,
+    Twitter,
+    Pinterest,
+    LinkedIn,
+    Youtube,
+    FacebookChat,
+    Website,
+    WebsiteUs
+  };
+  return data;
+};
