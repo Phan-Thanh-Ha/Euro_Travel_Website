@@ -1,21 +1,37 @@
-import { fetchBanner } from "@/actions/setting";
-import BlogSection from "@/components/home/blog-section";
+import { fetchBanner, fetchSetting } from "@/actions/setting";
+import AboutUsSection from "@/components/home/about-us-section";
 import CarouselBanner from "@/components/home/carousel-banner";
-import ContactSection from "@/components/home/contact-section";
-import CarouselGroupProduct from "@/components/home/group-product";
+import DiscoverWith from "@/components/home/discover-with-eurotravel";
+import FeedbackCustomer from "@/components/home/feedback-customer";
+import ImageCustomerSection from "@/components/home/image-customer-section";
+import NewspaperAboutUsSection from "@/components/home/newspapers-aboutus-section";
 import PartnerSection from "@/components/home/partner-section";
+import PlaceTravelSection from "@/components/home/place-travel-section";
+import SearchComponent from "@/components/search/search";
+import GroupTour from "@/components/tour/group-tour";
+import { handleDataSetting } from "@/utils/handleDataSetting";
 
 export default async function Home() {
   const banner = await fetchBanner({
-    GroupId: process.env.NEXT_PUBLIC_GROUPID,
+    KeySelect: "",
   });
+  const settings = await fetchSetting({
+    KeySetting: "",
+  });
+  const setting = await handleDataSetting(settings);
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between">
+    <main className="">
       <CarouselBanner banner={banner} />
-      <CarouselGroupProduct />
-      {/*  <BlogSection /> */}
-      <PartnerSection />
-      <ContactSection />
+      <SearchComponent />
+      <GroupTour />
+      <NewspaperAboutUsSection data={banner} />
+      <FeedbackCustomer data={banner} />
+      <AboutUsSection setting={setting} />
+      <ImageCustomerSection data={banner} />
+      <PlaceTravelSection data={banner} />
+      <DiscoverWith data={banner} />
+      <PartnerSection data={banner} />
     </main>
   );
 }

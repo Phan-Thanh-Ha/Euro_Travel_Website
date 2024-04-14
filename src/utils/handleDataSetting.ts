@@ -13,7 +13,6 @@ export const handleDataSetting = async (settingData: any[]) => {
     Email,
     Slogan,
     Map,
-    Careers,
     TermsAndConditions,
     PrivacyPolicy,
     Contentproduction,
@@ -21,11 +20,9 @@ export const handleDataSetting = async (settingData: any[]) => {
     BusinessLicense,
     CareerGoals,
     Address,
-    AddressMain,
     AboutCompany,
     CompanyName,
     Compliance,
-    MinistryOfIndustry,
     Facebook,
     Zalo,
     Instagram,
@@ -35,25 +32,27 @@ export const handleDataSetting = async (settingData: any[]) => {
     Youtube,
     FacebookChat,
     ImageABoutUs,
-    ShowImageISO,
-    IsHiddenCategories,
-    Infor1,
-    Infor2,
     ContactInformation,
-    NameAdress,
-    ShowroomAddress,
     WarrantyPolicy,
-    ClientConsultant,
-    Technicalassistance,
     PaymentGuide,
-    Informationsecurity,
     Tiktok,
     Website,
-    WebsiteUs
+    WebsiteUs,
+    PrivacyPolicyV2,
+    TermsPolicy,
+    ServiceCancellationPolicy,
+    IntroduceContent1,
+    IntroduceContent2,
+    PaymentMethod,
+    ImageAboutUsHome,
   } = settings;
-  let LogoUrl = envConfig.NEXT_PUBLIC_CDN + Logo.replace(",", "");
+  let LogoUrl = envConfig.NEXT_PUBLIC_CDN + Logo?.replace(",", "");
   let ImageABoutUsUrl =
-    envConfig.NEXT_PUBLIC_CDN + (ImageABoutUs||"/images/bg-header.jpg").replace(",", "");
+    envConfig.NEXT_PUBLIC_CDN +
+    (ImageABoutUs || "/images/bg-header.jpg")?.replace(",", "");
+  let ImageAboutUsHomeUrl =
+    envConfig.NEXT_PUBLIC_CDN + ImageAboutUsHome?.replace(",", "");
+
   let data = {
     Logo: LogoUrl,
     Email,
@@ -65,30 +64,18 @@ export const handleDataSetting = async (settingData: any[]) => {
     Map,
     Contentproduction,
     Address,
-    AddressMain,
-    Careers,
     PrivacyPolicy,
     TermsAndConditions,
     CompanyName,
     Compliance,
-    MinistryOfIndustry,
     Facebook,
     Zalo,
     BusinessPhilosophy,
     BusinessLicense,
     CareerGoals,
-    ShowImageISO,
-    IsHiddenCategories,
-    Infor1,
-    Infor2,
     ContactInformation,
-    NameAdress,
-    ShowroomAddress,
     WarrantyPolicy,
-    ClientConsultant,
-    Technicalassistance,
     PaymentGuide,
-    Informationsecurity,
     Tiktok,
     Instagram,
     Twitter,
@@ -97,7 +84,14 @@ export const handleDataSetting = async (settingData: any[]) => {
     Youtube,
     FacebookChat,
     Website,
-    WebsiteUs
+    WebsiteUs,
+    PrivacyPolicyV2,
+    TermsPolicy,
+    ServiceCancellationPolicy,
+    IntroduceContent1,
+    IntroduceContent2,
+    PaymentMethod,
+    ImageAboutUsHome: ImageAboutUsHomeUrl,
   };
   return data;
 };

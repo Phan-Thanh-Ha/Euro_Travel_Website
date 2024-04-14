@@ -7,9 +7,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import Image from "next/image";
-import Autoplay from "embla-carousel-autoplay";
-import envConfig from "../../../config";
+
 import ProductItem from "@/components/product/product-item";
 export default function CarouselGroupProductItem({ group }: { group: any }) {
   return (
@@ -22,8 +20,13 @@ export default function CarouselGroupProductItem({ group }: { group: any }) {
           </a>
         </div> */}
         <div className="justify-between py-2">
-          <h2 className="text-2xl font-bold text-main text-center">{group.Name}
-            <img src="/images/divider.png" alt="Divider" className="h-2 mx-auto my-3" />
+          <h2 className="text-2xl font-bold text-main text-center">
+            {group.Name}
+            <img
+              src="/images/divider.png"
+              alt="Divider"
+              className="h-2 mx-auto my-3"
+            />
           </h2>
         </div>
         <div className="flex justify-between">
@@ -42,10 +45,7 @@ export default function CarouselGroupProductItem({ group }: { group: any }) {
             <CarouselContent>
               {group.Product.map((item: any, index: number) => {
                 return (
-                  <CarouselItem
-                    key={index}
-                    className="rounded-lg md:basis-1/4"
-                  >
+                  <CarouselItem key={index} className="rounded-lg md:basis-1/4">
                     <ProductItem product={item} />
                   </CarouselItem>
                 );

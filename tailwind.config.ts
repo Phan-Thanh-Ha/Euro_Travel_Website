@@ -6,10 +6,15 @@ const config = {
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}"
+    "./src/**/*.{ts,tsx}",
   ],
   prefix: "",
   theme: {
+    fontFamily: {
+      sans: ["Roboto", "sans-serif"],
+      serif: ['"Roboto Slab"', "serif"],
+      body: ["Roboto", "sans-serif"],
+    },
     container: {
       center: true,
       // padding: "2rem",
@@ -26,8 +31,8 @@ const config = {
         main: "#d52028",
         "main-100": "#cf2e2e",
         "main-50": "#cf2e2e",
-        "blue-default":"rgb(29, 36, 108)",
-        "blue-default-50":"#0072bc",
+        "blue-default": "rgb(29, 36, 108)",
+        "blue-default-50": "#0072bc",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -76,10 +81,16 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "scale-inf": {
+          "0%": { transform: "scale(1)" },
+          "50%": { transform: "scale(0.9)" },
+          "100%": { transform: "scale(1)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "scale-inf": "scale-inf 1s infinite",
       },
     },
   },

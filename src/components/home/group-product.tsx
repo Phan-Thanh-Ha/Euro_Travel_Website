@@ -7,7 +7,7 @@ export default async function CarouselGroupProduct() {
   });
   if (dataGroup.length > 0) {
     return (
-      <div className="flex flex-col gap-12 mt-12">
+      <div className="flex flex-col gap-12 mt-12 container w-full">
         {dataGroup.map((group: any, index: number) => (
           <CarouselGroupProductItem key={index} group={group} />
         ))}

@@ -2,22 +2,22 @@ import { fetchMethod } from "@/actions/fetchFunctions";
 
 //#region  lấy dữ liệu setting
 interface FetchSettingData {
-  GroupId: number;
+  KeySetting: string;
 }
 export const fetchSetting = async (data: FetchSettingData) => {
   try {
-    return await fetchMethod(data, "Shop_spWeb_Setting_List");
+    return await fetchMethod(data, "Trl_spWeb_Setting_List");
   } catch (error) {}
 };
 //#endregion
 
 //#region  lấy dữ liệu menu
 interface FetchMenuData {
-  GroupId: number;
+  MenuName: string;
 }
 export const fetchMenu = async (data: FetchMenuData) => {
   try {
-    const res = await fetchMethod(data, "Shop_spWeb_Menu_List");
+    const res = await fetchMethod(data, "CMS_spMenu_List");
     return createNestedArray(res);
   } catch (error) {}
 };
@@ -25,11 +25,11 @@ export const fetchMenu = async (data: FetchMenuData) => {
 
 //#region  lấy dữ liệu banner
 interface FetchBannerData {
-  GroupId: number;
+  KeySelect: string;
 }
 export const fetchBanner = async (data: FetchBannerData) => {
   try {
-    return await fetchMethod(data, "Shop_spWeb_Slides_List");
+    return await fetchMethod(data, "CMS_spBanner_List");
   } catch (error) {}
 };
 

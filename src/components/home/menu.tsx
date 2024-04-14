@@ -13,47 +13,70 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetFooter,
-  SheetHeader,
-  SheetTrigger,
-} from "@/components/ui/sheet"
-import { Button } from "@/components/ui/button";
-import { ListBulletIcon } from "@radix-ui/react-icons";
 
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
 export function Menu({ data = [] }: { data: any }) {
-  const RenderMenu = ({className=""}) => {
+  const RenderMenu = ({ className = "" }) => {
     return data.map((item, index) => {
       if (item?.children?.length > 0) {
         return (
           <NavigationMenuItem key={index} className={className}>
-            <NavigationMenuTrigger className="bg-main text-white uppercase active:bg-main focus:bg-main">
-              {item.MenuName}
-            </NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid w-[350px] gap-3 p-4 md:w-[350px] md:grid-cols-2 lg:w-[600px] ">
-                {item?.children[0].children.map((component) => (
-                  <ListItem
-                    key={component.MenuName}
-                    title={component.MenuName}
-                    href={component.href}
-                  >
-                    {/* {component.MenuName} */}
-                  </ListItem>
-                ))}
-              </ul>
-            </NavigationMenuContent>
+            <HoverCard openDelay={100}>
+              <HoverCardTrigger
+                className="group inline-flex h-9 w-max items-center  cursor-pointer
+              justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors
+               hover:bg-accent hover:text-white focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 bg-main text-white uppercase active:bg-main focus:bg-main"
+              >
+                {" "}
+                {item.MenuName}
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 15 15"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="relative top-[1px] ml-1 h-3 w-3 transition duration-300 group-data-[state=open]:rotate-180"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M3.13523 6.15803C3.3241 5.95657 3.64052 5.94637 3.84197 6.13523L7.5 9.56464L11.158 6.13523C11.3595 5.94637 11.6759 5.95657 11.8648 6.15803C12.0536 6.35949 12.0434 6.67591 11.842 6.86477L7.84197 10.6148C7.64964 10.7951 7.35036 10.7951 7.15803 10.6148L3.15803 6.86477C2.95657 6.67591 2.94637 6.35949 3.13523 6.15803Z"
+                    fill="currentColor"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                  ></path>
+                </svg>
+              </HoverCardTrigger>
+              <HoverCardContent className="grid w-[300px] gap-3 mt-0 p-4 md:w-[300px] bg-main">
+                <ul className=" ">
+                  {item?.children.map((component) => (
+                    <ListItem
+                      key={component.MenuName}
+                      title={component.MenuName}
+                      href={"/" + item.key + "/" + component.key}
+                    >
+                      {/* {component.MenuName} */}
+                    </ListItem>
+                  ))}
+                </ul>
+              </HoverCardContent>
+            </HoverCard>
           </NavigationMenuItem>
         );
       }
       return (
         <NavigationMenuItem key={index} className={`${className} bg-main`}>
-          <Link className="w-full" href="/docs" legacyBehavior passHref>
+          <Link
+            className="w-full"
+            href={"/" + item.key}
+            legacyBehavior
+            passHref
+          >
             <NavigationMenuLink
-              className={`${navigationMenuTriggerStyle()} bg-main text-white uppercase active:bg-main focus:bg-main`}
+              className={`${navigationMenuTriggerStyle()}  bg-main text-white uppercase active:bg-main focus:bg-main`}
             >
               {item.MenuName}
             </NavigationMenuLink>
@@ -62,62 +85,21 @@ export function Menu({ data = [] }: { data: any }) {
       );
     });
   };
-  const [isMenuFixed, setIsMenuFixed] = React.useState(false);
-
-  React.useEffect(() => {
-    const handleScroll = () => {
-      const offset = window.scrollY;
-      if (offset > 0) {
-        setIsMenuFixed(true);
-      } else {
-        setIsMenuFixed(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    // Xóa bỏ event listener khi component bị unmount
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
 
   return (
     <>
-      <div className={`w-full bg-main transition-[display] duration-500 z-30 hidden ${isMenuFixed ? 'lg:fixed top-0' : 'lg:block'}`}>
-        <div className="container lg:mx-auto py-1">
+      <div
+        className={`w-full bg-main transition-[display] duration-500 z-30  `}
+      >
+        <div className="container hidden lg:block lg:mx-auto py-1">
           <NavigationMenu>
-            <NavigationMenuList className="bg-main ml-4">
+            <NavigationMenuList className="bg-main">
               <RenderMenu />
             </NavigationMenuList>
           </NavigationMenu>
         </div>
       </div>
-      <div className="lg:hidden fixed top-1 left-1 z-40">
-      <Sheet key="left">
-        <SheetTrigger asChild>
-          <Button className="mt-4 ml-2" variant="ghost" size="icon"><ListBulletIcon className="h-7 w-7 text-black" /></Button>
-        </SheetTrigger>
-        <SheetContent side={"left"} className="bg-main">
-        <SheetHeader>
-        </SheetHeader>
-          <div className="grid gap-4 py-4">
-            <NavigationMenu className="w-full max-w-full block">
-              <NavigationMenuList className="bg-main flex flex-col w-full">
-                <RenderMenu className="w-full border-b-2 border-b-white" />
-              </NavigationMenuList>
-            </NavigationMenu>
-          </div>
-          <SheetFooter>
-            <SheetClose asChild>
-              {/* <Button type="submit">Save changes</Button> */}
-            </SheetClose>
-          </SheetFooter>
-        </SheetContent>
-      </Sheet>
-      </div>
     </>
-
   );
 }
 
@@ -131,14 +113,12 @@ const ListItem = React.forwardRef<
         <a
           ref={ref}
           className={cn(
-            "block cursor-pointer select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            "block cursor-pointer select-none space-y-1 text-white rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
             className
           )}
           {...props}
         >
-          <div className="text-base font-medium leading-none">
-            {title}
-          </div>
+          <div className="text-base font-medium leading-none">{title}</div>
           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
             {children}
           </p>

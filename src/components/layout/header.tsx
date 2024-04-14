@@ -3,14 +3,14 @@ import { Menu } from "@/components/home/menu";
 import TopHeader from "@/components/home/top-header";
 
 export default async function Header() {
-  const data = await fetchMenu({ GroupId: process.env.NEXT_PUBLIC_GROUPID });
+  const data = await fetchMenu({ MenuName: null });
   let setting = await fetchSetting({
-    GroupId: process.env.NEXT_PUBLIC_GROUPID,
+    KeySetting: "",
   });
 
   return (
-    <header className="">
-      <TopHeader dataSetting={setting} />
+    <header className=" sticky -top-6 md:-top-[100px] z-50">
+      <TopHeader dataSetting={setting} dataMenu={data} />
       <Menu data={data} />
     </header>
   );

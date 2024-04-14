@@ -3,11 +3,11 @@ import FooterData from "@/components/home/footer-data";
 
 export default async function Footer() {
   let setting = await fetchSetting({
-    GroupId: process.env.NEXT_PUBLIC_GROUPID,
+    KeySetting: "",
   });
   return (
-    <footer className="px-2">
-      <FooterData settingData={setting} />
+    <footer className="">
+      <FooterData dataSetting={setting} />
     </footer>
   );
 }
