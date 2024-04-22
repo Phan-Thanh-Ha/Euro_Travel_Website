@@ -66,6 +66,8 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+
+        
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -92,6 +94,7 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
         "scale-inf": "scale-inf 1s infinite",
       },
+      
     },
   },
   plugins: [require("tailwindcss-animate")],

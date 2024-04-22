@@ -34,6 +34,10 @@ module.exports = {
         source: "/du-lich/:slug*",
         destination: "/tour/:slug*",
       },
+      {
+        source: "/lien-he/:slug*",
+        destination: "/contact/:slug*",
+      }
     ];
   },
 };

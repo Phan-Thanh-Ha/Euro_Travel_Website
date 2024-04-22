@@ -7,21 +7,47 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-export function Breadcrum() {
+import React from "react";
+interface BreadcrumbItemData {
+  href?: string;
+  title: string;
+  isCurrentPage?: boolean;
+}
+
+interface BreadcrumProps {
+  items: BreadcrumbItemData[];
+  className?: string;
+  colorBreadcrumbPage?: string;
+  colorBreadcrumbLink?: string;
+}
+export function Breadcrum({
+  items,
+  className,
+  colorBreadcrumbPage,
+  colorBreadcrumbLink,
+}: BreadcrumProps) {
   return (
-    <Breadcrumb>
+    <Breadcrumb className={className}>
       <BreadcrumbList>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/">Home</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/docs/components">Components</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
-        </BreadcrumbItem>
+        {items.map((item, index) => (
+          <React.Fragment key={index}>
+            <BreadcrumbItem>
+              {item.isCurrentPage ? (
+                <BreadcrumbPage style={{ color: colorBreadcrumbPage }}>
+                  {item.title}
+                </BreadcrumbPage>
+              ) : (
+                <BreadcrumbLink
+                  href={item.href || "#"}
+                  style={{ color: colorBreadcrumbLink }}
+                >
+                  {item.title}
+                </BreadcrumbLink>
+              )}
+            </BreadcrumbItem>
+            {index < items.length - 1 && <BreadcrumbSeparator />}
+          </React.Fragment>
+        ))}
       </BreadcrumbList>
     </Breadcrumb>
   );

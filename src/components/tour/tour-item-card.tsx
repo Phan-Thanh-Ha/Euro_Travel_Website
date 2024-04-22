@@ -12,6 +12,7 @@ import DiaLogRegisterTour from "@/components/tour/dialog-register-tour";
 import envConfig from "../../../config";
 import Link from "next/link";
 import { FormatMoneyVND } from "@/utils/FormatMoneyVND";
+import { cn } from "@/lib/utils";
 type TourItemProps = {
   Destination: string;
   DeparturePoint: string;
@@ -24,7 +25,13 @@ type TourItemProps = {
   Price: number;
 };
 
-export default function TourItem({ data }: { data: TourItemProps }) {
+export default function TourItem({
+  data,
+  className,
+}: {
+  data: TourItemProps;
+  className?: string;
+}) {
   const to = data.Destination.replace(/;\s/g, " - ").replace(/ - $/, "");
   const from = data.DeparturePoint.replace(/;\s/g, " / ").replace(/ \/ $/, "");
   const RenderDate = () => {
@@ -42,13 +49,14 @@ export default function TourItem({ data }: { data: TourItemProps }) {
 
   return (
     <Card className="rounded-lg shadow-sm hover:shadow-2xl duration-300 group h-full flex flex-col">
-      <Link href={"/du-lich" + data?.Slug ?? ""}>
+      <Link href={"/tour" + data?.Slug ?? ""}>
         <CardHeader className="p-0 overflow-hidden rounded-t-lg cursor-pointer ">
           <Image
             src={envConfig.NEXT_PUBLIC_CDN + data.Image.split(",")[0]}
             alt="nature"
             width={1200}
             height={800}
+            quality={100}
             className="w-auto h-[235px] md:h-[250px] object-cover  
            group-hover:scale-105  duration-300 ease-in-out overflow-hidden"
           />
@@ -64,15 +72,20 @@ export default function TourItem({ data }: { data: TourItemProps }) {
         </span>
         <div className="flex flex-col gap-1 h-full">
           <CardTitle className="flex-none text-main uppercase leading-4 mb-3 font-bold text-base cursor-pointer">
-            <Link href={"/du-lich" + data?.Slug ?? ""}>{data.NameTour}</Link>
+            <Link href={"/tour" + data?.Slug ?? ""}>{data.NameTour}</Link>
           </CardTitle>
           <div className="flex flex-col gap-1.5 flex-1   ">
-            <div className="flex items-start gap-1 text-sm md:text-base">
-              <span className="flex flex-row  gap-1 min-w-fit font-bold">
+            <div
+              className={cn(
+                "flex items-start gap-1 text-sm md:text-base",
+                className
+              )}
+            >
+              <span className="flex items-center flex-row  gap-1 min-w-fit font-bold">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width={20}
-                  height={20}
+                  width={16}
+                  height={16}
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -88,34 +101,46 @@ export default function TourItem({ data }: { data: TourItemProps }) {
               </span>
               <span>{to}</span>
             </div>
-            <div className="flex items-center gap-1 text-sm md:text-base">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width={20}
-                height={20}
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-map-pinned"
-              >
-                <path d="M18 8c0 4.5-6 9-6 9s-6-4.5-6-9a6 6 0 0 1 12 0" />
-                <circle cx={12} cy={8} r={2} />
-                <path d="M8.835 14H5a1 1 0 0 0-.9.7l-2 6c-.1.1-.1.2-.1.3 0 .6.4 1 1 1h18c.6 0 1-.4 1-1 0-.1 0-.2-.1-.3l-2-6a1 1 0 0 0-.9-.7h-3.835" />
-              </svg>
-
-              <span className="font-bold">Nơi khởi hành: </span>
+            <div
+              className={cn(
+                "flex items-start gap-1 text-sm md:text-base",
+                className
+              )}
+            >
+              <span className="font-bold items-center flex flex-row gap-1 flex-none">
+                {" "}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width={16}
+                  height={16}
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="lucide lucide-map-pinned"
+                >
+                  <path d="M18 8c0 4.5-6 9-6 9s-6-4.5-6-9a6 6 0 0 1 12 0" />
+                  <circle cx={12} cy={8} r={2} />
+                  <path d="M8.835 14H5a1 1 0 0 0-.9.7l-2 6c-.1.1-.1.2-.1.3 0 .6.4 1 1 1h18c.6 0 1-.4 1-1 0-.1 0-.2-.1-.3l-2-6a1 1 0 0 0-.9-.7h-3.835" />
+                </svg>{" "}
+                Nơi khởi hành:{" "}
+              </span>
               <span>{from}</span>
             </div>
-            <div className="flex items-center gap-1 text-sm md:text-base">
+            <div
+              className={cn(
+                "flex items-start gap-1 text-sm md:text-base",
+                className
+              )}
+            >
               <span className=" flex items-center gap-1 font-bold">
                 {" "}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width={20}
-                  height={20}
+                  width={16}
+                  height={16}
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -129,8 +154,8 @@ export default function TourItem({ data }: { data: TourItemProps }) {
               </span>
               <span>{data.Flight}</span>
             </div>
-            <div className=" grid grid-cols-5 gap-1 text-sm md:text-base my-1">
-              <span className=" flex flex-row gap-1 col-span-2 font-bold">
+            <div className=" flex flex-row flex-wrap gap-1 text-sm md:text-base my-1">
+              <span className=" flex flex-row gap-1 flex-none font-bold">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width={20}
@@ -160,14 +185,14 @@ export default function TourItem({ data }: { data: TourItemProps }) {
               </span>
             </div>
           </div>
-          <div className="flex justify-between px-4 gap-4 flex-none">
+          <div className="flex justify-between  gap-4 flex-none">
             <DiaLogRegisterTour tourName={data.NameTour} />
             <Button
               variant="outline"
               size={"lg"}
-              className="w-full  font-bold text-base"
+              className="w-full px-4   font-bold text-base"
             >
-              <Link href={"/du-lich" + data?.Slug ?? ""}> Xem chi tiết</Link>
+              <Link href={"/tour" + data?.Slug ?? ""}> Xem chi tiết</Link>
             </Button>
           </div>
         </div>

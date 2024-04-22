@@ -2,9 +2,6 @@ import { Breadcrum } from "@/components/home/bread-crumb";
 import Image from "next/image";
 
 export default async function Contact() {
-  //   const banner = await fetchBanner({
-  //     GroupId: process.env.NEXT_PUBLIC_GROUPID,
-  //   });
   return (
     <>
       <div className="lg:py-4 py-4 w-full">
@@ -18,7 +15,12 @@ export default async function Contact() {
         />
       </div>
       <div className="container px-4 mx-auto mt-10 ">
-        <Breadcrum />
+        <Breadcrum
+          items={[
+            { href: "/", title: "Home" },
+            { title: "Liên hệ", isCurrentPage: true },
+          ]}
+        />
         <div className="mt-10">
           <div className="mt-10">
             <h1>
@@ -65,7 +67,7 @@ export default async function Contact() {
                 <p className="font-bold text-sm">
                   {"2/ LIÊN HỆ GÓP Ý CHẤT LƯỢNG DỊCH VỤ SAU KHI ĐI TOUR "}
                   <strong>
-                    <a href="your-link-here" className="text-blue-500">
+                    <a href="/CustomerSurveryOpinion" className="text-blue-500">
                       TẠI ĐÂY
                     </a>
                   </strong>
