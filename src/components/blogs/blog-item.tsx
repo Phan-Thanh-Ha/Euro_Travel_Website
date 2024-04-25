@@ -32,7 +32,7 @@ export default function BlogItem({ data }: { data: BlogItemProps }) {
             height={800}
             quality={100}
             className="w-auto h-[235px] md:h-[250px] object-cover  
-           group-hover:scale-105  duration-300 ease-in-out overflow-hidden"
+            group-hover:scale-105  duration-300 ease-in-out overflow-hidden"
           />
         </CardHeader>
       </Link>

@@ -37,3 +37,7 @@ next-env.d.ts
 
 # svn
 .svn
+
+# yarn
+.yarn/cache
+.yarn.lock

@@ -5,6 +5,7 @@ import "./globals.css";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import { GlobalProvider } from "@/store";
+import FloatingButton from "@/components/float-button/float-button";
 
 const sans = Bai_Jamjuree({ weight: "500", subsets: ["vietnamese"] });
 
@@ -37,6 +38,7 @@ export default function RootLayout({
           {" "}
           <Header />
           {children}
+          <FloatingButton/>
           <Footer />
         </GlobalProvider>
       </body>

@@ -77,7 +77,6 @@ export default function CustomerSurveryOpinion() {
             initialDate={new Date()}
             buttonClassName="w-full"
             onSelect={(day) => {
-              console.log(day);
               if (day) {
                 setDate(day);
               }
@@ -92,9 +91,7 @@ export default function CustomerSurveryOpinion() {
           </CardDescription>
           <Radio
             data={dataEuroTravelFrom}
-            onSelect={(item) => {
-              console.log(item);
-            }}
+            onSelect={(item) => {}}
             className="grid grid-cols-6 items-center gap-4"
           />
           <CardDescription>
@@ -104,9 +101,7 @@ export default function CustomerSurveryOpinion() {
           </CardDescription>
           <Radio
             data={dataYesNo}
-            onSelect={(item) => {
-              console.log(item);
-            }}
+            onSelect={(item) => {}}
             className="grid grid-cols-6 items-center gap-4"
           />
           <div className="w-full h-0.5 bg-gray-200 my-4 mt-50"></div>
@@ -121,9 +116,7 @@ export default function CustomerSurveryOpinion() {
           </CardDescription>
           <Radio
             data={dataRating}
-            onSelect={(item) => {
-              console.log(item);
-            }}
+            onSelect={(item) => {}}
             className="grid grid-cols-6 items-center gap-4"
           />
           <CardDescription>
@@ -141,9 +134,7 @@ export default function CustomerSurveryOpinion() {
           </CardDescription>
           <Radio
             data={dataRating}
-            onSelect={(item) => {
-              console.log(item);
-            }}
+            onSelect={(item) => {}}
             className="grid grid-cols-6 items-center gap-4"
           />
           <CardDescription>
@@ -161,9 +152,7 @@ export default function CustomerSurveryOpinion() {
           </CardDescription>
           <Radio
             data={dataRating}
-            onSelect={(item) => {
-              console.log(item);
-            }}
+            onSelect={(item) => {}}
             className="grid grid-cols-6 items-center gap-4"
           />
           <CardDescription>
@@ -181,9 +170,7 @@ export default function CustomerSurveryOpinion() {
           </CardDescription>
           <Radio
             data={dataRating}
-            onSelect={(item) => {
-              console.log(item);
-            }}
+            onSelect={(item) => {}}
             className="grid grid-cols-6 items-center gap-4"
           />
           <CardDescription>
@@ -201,9 +188,7 @@ export default function CustomerSurveryOpinion() {
           </CardDescription>
           <Radio
             data={dataRating}
-            onSelect={(item) => {
-              console.log(item);
-            }}
+            onSelect={(item) => {}}
             className="grid grid-cols-6 items-center gap-4"
           />
           <CardDescription>
@@ -231,9 +216,7 @@ export default function CustomerSurveryOpinion() {
           </CardDescription>
           <Radio
             data={dataYesNo}
-            onSelect={(item) => {
-              console.log(item);
-            }}
+            onSelect={(item) => {}}
             className="grid grid-cols-6 items-center gap-4"
           />
           <CardDescription>
@@ -247,9 +230,7 @@ export default function CustomerSurveryOpinion() {
           </CardDescription>
           <Radio
             data={dataYesNo}
-            onSelect={(item) => {
-              console.log(item);
-            }}
+            onSelect={(item) => {}}
             className="grid grid-cols-6 items-center gap-4"
           />
           <Button
@@ -259,9 +240,7 @@ export default function CustomerSurveryOpinion() {
               width: "30%",
               padding: "10px",
             }}
-            onClick={() => {
-              console.log("Submit");
-            }}
+            onClick={() => {}}
           >
             Gửi ý kiến khảo sát
           </Button>

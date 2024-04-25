@@ -33,3 +33,14 @@ export const fetchTour = async (data: FetchTour) => {
   } catch (error) {}
 };
 //#endregion
+
+// #region lấy dữ liệu tour mới
+interface FetchTourListNew {
+  Take: number;
+}
+export const fetchTourListNew = async (data: FetchTourListNew) => {
+  try {
+    return await fetchMethod(data, "CMS_spBlogs_Tour_List");
+  } catch (error) {}
+};
+// #endregion

@@ -1,0 +1,79 @@
+.ping-fill {
+  margin: 50px auto;
+  background-color: blue;
+  width: 300px;
+  font-size: 25px;
+  animation: ping 2s cubic-bezier(0, 0, 0.1, 1) infinite;
+  text-align: center;
+}
+@keyframes ping-fill {
+  90%,
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+.shake-img {
+  animation: shake 0.3s cubic-bezier(0, 0, 0.1, 1) infinite;
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(-15deg);
+  }
+  50% {
+    transform: rotate(15deg);
+  }
+  100% {
+    transform: rotate(-15deg);
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes slideIn {
+  0% {
+    transform: translateX(150px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-150px);
+  }
+}
+
+.animate-slideIn {
+  animation: slideIn 0.5s ease forwards;
+}
+
+.animate-slideOut {
+  animation: slideOut 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out forwards;
+}

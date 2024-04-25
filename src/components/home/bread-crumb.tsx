@@ -10,7 +10,7 @@ import {
 import React from "react";
 interface BreadcrumbItemData {
   href?: string;
-  title: string;
+  title: string | JSX.Element;
   isCurrentPage?: boolean;
 }
 

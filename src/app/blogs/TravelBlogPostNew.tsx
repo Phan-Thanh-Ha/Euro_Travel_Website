@@ -1,8 +1,4 @@
-import {
-  dataTravelBlogsHeader,
-  dataTravelBlogsPage,
-} from "@/app/(blogs)/travel-blogs/data";
-import BlogItem from "@/components/blogs/blog-item";
+import { dataTravelBlogsHeader, dataTravelBlogsPage } from "@/app/blogs/data";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Carousel,
@@ -16,18 +12,28 @@ import Link from "next/link";
 import React from "react";
 
 interface DataTravelBlogPostNewProps {
-  Id: number;
+  BlogsId: number;
   Title: string;
+  Description: string;
+  Content: string;
   Image: string;
   Link: string;
+  CountView: number;
+  Url: string;
+  CreateOn: string;
+  CreateBy: string;
+  CategoryId: number;
 }
 interface TravelBlogPostNewProps {
-  // data: DataTravelBlogPostNewProps[];
+  data: DataTravelBlogPostNewProps[];
 }
-export function TravelBlogPostNew({}: TravelBlogPostNewProps) {
+export function TravelBlogPostNew({ data }: TravelBlogPostNewProps) {
+  console.log("🚀🚀🚀 ======== data========", data);
   return dataTravelBlogsHeader.map((headerItem, headerIndex) => (
     <div key={headerIndex}>
-      <h2 className="text-2xl text-main font-bold my-5"> {headerItem.Title}</h2>
+      <h2 className="text-2xl text-main font-bold my-5">
+        {headerItem?.CategoryName}
+      </h2>
       <Carousel
         className="w-full max-w-full group "
         opts={{
@@ -38,7 +44,6 @@ export function TravelBlogPostNew({}: TravelBlogPostNewProps) {
       >
         <CarouselContent>
           {dataTravelBlogsPage?.map((item: any, index: number) => {
-            console.log("🚀🚀🚀 ======== item========", item);
             return (
               <CarouselItem
                 key={index}
