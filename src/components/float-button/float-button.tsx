@@ -78,7 +78,7 @@ export default function FloatingButton() {
         </a>
       </button>
       {/* button Back to top */}
-      <button className={` text-white rounded-full flex items-center justify-center w-[50px] h-[50px] duration-300 transform hover:scale-105 ${showButton ? 'duration-300 delay-150 opacity-100 transition-opacity ease-in' : 'opacity-0'}`} onClick={backToTop}>
+      <button className={`text-white rounded-full flex items-center justify-center w-[50px] h-[50px] duration-300 transform hover:scale-105 ${showButton ? 'duration-300 delay-150 opacity-100 transition-opacity ease-in' : 'opacity-0'}`} onClick={backToTop}>
         {
           showButton ?
             (

@@ -275,7 +275,7 @@ export default async function TourDetail({
             </svg>
             Lịch trình
           </h2>
-          <ScheduleTour schedule={tour?.Schedule} />
+          {/* <ScheduleTour schedule={tour?.Schedule} /> */}
         </div>
         <div>
           <Price data={tour} />

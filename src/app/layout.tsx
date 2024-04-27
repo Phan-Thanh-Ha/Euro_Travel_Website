@@ -38,7 +38,7 @@ export default function RootLayout({
           {" "}
           <Header />
           {children}
-          <FloatingButton/>
+          <FloatingButton />
           <Footer />
         </GlobalProvider>
       </body>

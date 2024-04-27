@@ -19,7 +19,6 @@ export default async function Blogs() {
     Take: 7,
     Url: "/cam-nang",
   });
-  console.log("🚀🚀🚀 ======== HandBookList========", HandBookList);
   return (
     <div>
       <div className="lg:py-4 py-4 w-full">
@@ -99,7 +98,6 @@ export default async function Blogs() {
             >
               <CarouselContent>
                 {HandBookList?.map((item: any, index: number) => {
-                  console.log("🚀🚀🚀 ======== item========", item);
                   return (
                     <CarouselItem
                       key={index}
