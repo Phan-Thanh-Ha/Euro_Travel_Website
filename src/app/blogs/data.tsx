@@ -2,19 +2,19 @@ export const dataTravelBlogs = [
   {
     Id: 1,
     Title: "Địa điểm du lịch",
-    Image: "/images/airplane-around-earth.png",
+    Image: "/images/dia-diem.jpg",
     Link: "/cam-nang/cam-nang-du-lich/dia-diem-du-lich",
   },
   {
     Id: 2,
     Title: "Kinh nghiệm du lịch",
-    Image: "/images/customer-review.png",
+    Image: "/images/kinh-nghiem.jpg",
     Link: "/cam-nang/cam-nang-du-lich/kinh-nghiem-du-lich",
   },
   {
     Id: 3,
     Title: "Văn hoá ẩm thực",
-    Image: "/images/restaurant.png",
+    Image: "/images/am-thuc.jpg",
     Link: "/cam-nang/cam-nang-du-lich/van-hoa-am-thuc",
   },
 ];

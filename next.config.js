@@ -37,6 +37,10 @@ module.exports = {
       {
         source: "/lien-he/:slug*",
         destination: "/contact/:slug*",
+      },
+      {
+        source: "/cam-nang/:slug*",
+        destination: "/blogs/:slug*",
       }
     ];
   },

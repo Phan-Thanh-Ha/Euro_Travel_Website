@@ -67,19 +67,21 @@ export default async function TravelPage({
         <TravelContentComp content={Content} />
       </div>
       <div className="flex justify-center mt-10">
-        <h1>HÌNH ẢNH THỰC TẾ KHÁCH HÀNG TRẢI NGHIỆM DỊCH VỤ CỦA EUROTRAVEL</h1>
+        <h1 style={{ color: "red", fontSize: "30px" }}>
+          HÌNH ẢNH THỰC TẾ KHÁCH HÀNG TRẢI NGHIỆM DỊCH VỤ CỦA EUROTRAVEL
+        </h1>
       </div>
       <ImageComp data={Content} />
       <div className="flex justify-center mt-10">
-        <h1>ĐỊA DANH NỔI BẬT</h1>
+        <h1 style={{ color: "red", fontSize: "30px" }}>ĐỊA DANH NỔI BẬT</h1>
       </div>
       <ImageComp data={Content} />
       <div className="flex justify-center mt-10">
-        <h1>Tour nỗi bật</h1>
+        <h1 style={{ color: "red", fontSize: "30px" }}>Tour nỗi bật</h1>
       </div>
       <TourList />
       <div className="flex justify-center mt-10">
-        <h1>THÔNG TIN DU LỊCH</h1>
+        <h1 style={{ color: "red", fontSize: "30px" }}>THÔNG TIN DU LỊCH</h1>
       </div>
       <ImageComp data={Content} />
     </div>

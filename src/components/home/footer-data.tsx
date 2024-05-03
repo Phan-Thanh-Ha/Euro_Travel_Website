@@ -1,111 +1,118 @@
-2
+2;
 import Image from "next/image";
 import Link from "next/link";
 import EmailRegisterForm from "../forms/email-resgister-form";
 import { handleDataSetting } from "@/utils/handleDataSetting";
+import { fetchMenu } from "@/actions/setting";
 
 export default async function FooterData({ dataSetting = [] }: any) {
   let setting: any = await handleDataSetting(dataSetting);
-  console.log("data setting : ", setting);
+  let category = await fetchMenu({ MenuName: "" });
+  let menuTour = [35, 37, 38, 39];
+  let menuList = category?.filter((item: any) =>
+    menuTour.includes(item.MenuId)
+  );
   const dataDriver = {
     tourList: [
       {
         tourName: "Du lịch mỹ",
         item: [
           {
-            location: "item 1"
+            location: "item 1",
           },
           {
-            location: "item 2"
+            location: "item 2",
           },
           {
-            location: "item 3"
-          }
-        ]
+            location: "item 3",
+          },
+        ],
       },
       {
         tourName: "Du lịch châu Âu",
         item: [
           {
-            location: "item 4"
+            location: "item 4",
           },
           {
-            location: "item 5"
+            location: "item 5",
           },
           {
-            location: "item 6"
-          }
-        ]
+            location: "item 6",
+          },
+        ],
       },
       {
         tourName: "Du lịch châu Âu",
         item: [
           {
-            location: "item 4"
+            location: "item 4",
           },
           {
-            location: "item 5"
+            location: "item 5",
           },
           {
-            location: "item 6"
-          }
-        ]
+            location: "item 6",
+          },
+        ],
       },
       {
         tourName: "Du lịch châu Âu",
         item: [
           {
-            location: "item 4"
+            location: "item 4",
           },
           {
-            location: "item 5"
+            location: "item 5",
           },
           {
-            location: "item 6"
-          }
-        ]
+            location: "item 6",
+          },
+        ],
       },
       {
         tourName: "Du lịch châu Âu",
         item: [
           {
-            location: "item 4"
+            location: "item 4",
           },
           {
-            location: "item 5"
+            location: "item 5",
           },
           {
-            location: "item 6"
-          }
-        ]
+            location: "item 6",
+          },
+        ],
       },
       {
         tourName: "Du lịch châu Âu",
         item: [
           {
-            location: "item 4"
+            location: "item 4",
           },
           {
-            location: "item 5"
+            location: "item 5",
           },
           {
-            location: "item 6"
-          }
-        ]
+            location: "item 6",
+          },
+        ],
       },
-    ]
-  }
+    ],
+  };
 
   const TourList = ({ data }: any) => {
     return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2">
-        {data.tourList.map((tour: any, index: any) => (
-          <div key={index} className="">
-            <h5 className="text-main text-base">{tour.tourName}</h5>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4">
+        {menuList?.map((tour: any, index: any) => (
+          <div key={index} className={index === 0 ? "row-span-3" : ""}>
+            <h5 className="text-main text-base font-semibold">
+              {tour.MenuName}
+            </h5>
             <ul className="p-0 m-0">
-              {tour.item.map((item: any, itemIndex: any) => (
-                <li key={itemIndex} className="p-0 m-0">
-                  {item.location}
+              {tour?.children?.map((item: any, itemIndex: any) => (
+                <li key={itemIndex} className="p-0 m-0 py-1 text-sm">
+                  <Link href={"/"}>{item.MenuName}</Link>
                 </li>
               ))}
             </ul>
@@ -116,7 +123,11 @@ export default async function FooterData({ dataSetting = [] }: any) {
   };
   return (
     <>
-      <div className="w-full bg-red-50 rounded-t-[20px] pt-2 flext justify-center">
+      <div
+        className={`w-full   pt-2 relative bg-cover bg-center bg-no-repeat bg-main transition-[display] duration-500 z-30`}
+        style={{ backgroundImage: `url("${setting.BgFooter}")` }}
+      >
+        <div className="absolute inset-0 bg-white/80 z-[-10]"> </div>
         <div className="px-4">
           <div className="container py-2">
             {/* 1 */}
@@ -136,8 +147,12 @@ export default async function FooterData({ dataSetting = [] }: any) {
                     <p className="text-base py-2 font-bold text-main">
                       THÔNG TIN LIÊN HỆ
                     </p>
-                    <ul className="text-sm mb-4">
-                      <li><h5 className="text-main text-base">Văn phòng chính</h5></li>
+                    <ul className="text-sm mb-4 ">
+                      <li>
+                        <h5 className="text-main text-base font-semibold">
+                          Văn phòng chính
+                        </h5>
+                      </li>
                       <li className="text-sm flex">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -154,7 +169,8 @@ export default async function FooterData({ dataSetting = [] }: any) {
                           <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
                           <circle cx={12} cy={10} r={3} />
                         </svg>
-                        {setting?.AddressMain || "352-354-356 Lê Văn Sỹ, P.2, Q.Tân Bình, TP Hồ Chí Minh"}
+                        {setting?.AddressMain ||
+                          "352-354-356 Lê Văn Sỹ, P.2, Q.Tân Bình, TP Hồ Chí Minh"}
                       </li>
                       <li className="text-sm flex">
                         <svg
@@ -228,7 +244,11 @@ export default async function FooterData({ dataSetting = [] }: any) {
                       </li>
                     </ul>
                     <ul className="text-sm mb-4">
-                      <li><h5 className="text-main text-base">Văn phòng Hà Nội</h5></li>
+                      <li>
+                        <h5 className="text-main text-base  font-semibold">
+                          Văn phòng Hà Nội
+                        </h5>
+                      </li>
                       <li className="text-sm flex m-0">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -245,7 +265,8 @@ export default async function FooterData({ dataSetting = [] }: any) {
                           <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
                           <circle cx={12} cy={10} r={3} />
                         </svg>
-                        {setting?.Address || "Tòa nhà Imperial Suite, 71 Vạn Phúc, Ba Đình, Hà Nội"}
+                        {setting?.Address ||
+                          "Tòa nhà Imperial Suite, 71 Vạn Phúc, Ba Đình, Hà Nội"}
                       </li>
                       <li className="text-sm flex">
                         <svg
@@ -330,7 +351,11 @@ export default async function FooterData({ dataSetting = [] }: any) {
                       VỀ CHÚNG TÔI
                     </p>
                     <ul className="text-sm mb-4">
-                      <li><h5 className="text-main text-base">Thông tin</h5></li>
+                      <li>
+                        <h5 className="text-main text-base  font-semibold">
+                          Thông tin
+                        </h5>
+                      </li>
                       <li>
                         <Link
                           className="transition hover:text-main text-sm"
@@ -365,7 +390,11 @@ export default async function FooterData({ dataSetting = [] }: any) {
                       </li>
                     </ul>
                     <ul className="text-sm mb-4">
-                      <li><h5 className="text-main text-base lg:pt-6">Chính sách và quy định</h5></li>
+                      <li>
+                        <h5 className="text-main text-base lg:pt-6  font-semibold">
+                          Chính sách và quy định
+                        </h5>
+                      </li>
                       <li>
                         <Link
                           className="transition hover:text-main text-sm"
@@ -395,27 +424,22 @@ export default async function FooterData({ dataSetting = [] }: any) {
                 </div>
               </div>
             </div>
-            <div>
+            {/* <div>
               <div className="h-1 shadow-md my-2"></div>
-            </div>
+            </div> */}
             {/* 2 */}
-            <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-2">
+            <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-2 mt-10">
               {/* group đăng ký email + mạng xã hội */}
               <div className="lg:pr-6">
                 {/* Đăng ký email để nhận thông báo */}
                 <div className="md:pb-5">
                   <div className="flex flex-row">
-                    <p className="pb-4 sm:text-sm md:text-base text-main font-bold">
+                    <p className="pb-4 sm:text-sm md:text-base text-main text-center font-bold">
                       Đăng ký Email để nhận thông tin từ EuroTravel
                     </p>
                   </div>
                   <div className="flex justify-center items-center">
-                    <Link
-                      target="_blank"
-                      href={"/"}
-                      title="home"
-                      rel="go home"
-                    >
+                    <Link target="_blank" href={"/"} title="home" rel="go home">
                       <Image
                         width={200}
                         height={200}
@@ -608,7 +632,7 @@ export default async function FooterData({ dataSetting = [] }: any) {
                           Nơi cấp: Sở kế hoạch và đầu tư TP Hồ Chí Minh.
                         </li>
                         <li className="text-sm">
-                          Giấy phép kinh doanh Lữ Hành Quốc Tế: <br/> Số {" "}
+                          Giấy phép kinh doanh Lữ Hành Quốc Tế: <br /> Số{" "}
                           <span className="font-bold">
                             79-901/2018/TCDL-GP LHQT
                           </span>
@@ -624,8 +648,7 @@ export default async function FooterData({ dataSetting = [] }: any) {
                       CHẤP NHẬN THANH TOÁN
                     </p>
                   </div>
-                  <div className="md:col-span-2 col-span-1 flex flex-row gap-2">
-                  </div>
+                  <div className="md:col-span-2 col-span-1 flex flex-row gap-2"></div>
                   <div className="md:col-span-2 col-span-1">
                     <Image
                       width="400"
@@ -641,18 +664,18 @@ export default async function FooterData({ dataSetting = [] }: any) {
             </div>
           </div>
         </div>
-      </div>
-      <div className="bg-main lg:py-4 py-6">
-        <div className="mx-auto text-center flex items-center justify-center">
-          <p className="mt-4 text-sm text-white  sm:mt-0">
-            © 2023 <strong>{setting?.CompanyName}</strong>. Designed by{" "}
-            <a
-              href="https://cak-solution.com/"
-              className="text-white underline font-bold italic"
-            >
-              CAK Solution
-            </a>
-          </p>
+        <div className="bg-transparent lg:py-4 py-6">
+          <div className="mx-auto text-center flex items-center justify-center">
+            <p className="mt-4 text-sm text-main  sm:mt-0">
+              © 2023 <strong>{setting?.CompanyName}</strong>. Designed by{" "}
+              <a
+                href="https://cak-solution.com/"
+                className="text-main underline font-bold italic"
+              >
+                CAK Solution
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </>

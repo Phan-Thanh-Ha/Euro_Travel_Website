@@ -1,6 +1,5 @@
 import BlogList from "@/app/blogs/TravelblogsinterestComp";
 import { dataTravelBlogsHeader } from "@/app/blogs/data";
-import { Breadcrum } from "@/components/home/bread-crumb";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import {
   Carousel,
@@ -14,6 +13,7 @@ import Link from "next/link";
 import envConfig from "../../../config";
 import { format } from "date-fns";
 import { fetchHandBook } from "@/actions/blogs";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 export default async function Blogs() {
   const HandBookList = await fetchHandBook({
     Take: 7,
@@ -21,68 +21,30 @@ export default async function Blogs() {
   });
   return (
     <div>
-      <div className="lg:py-4 py-4 w-full">
-        <Image
-          width={1200}
-          height={800}
-          src="/images/blogs.png"
-          alt=""
-          className="attachment-original size-original w-full"
-          sizes="(max-width: 768px) 80vw, (max-width: 1200px) 30vw, 23vw"
-        />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-2xl bg-black bg-opacity-40 p-12 flex flex-col items-center justify-center">
-          <h1 className="text-center text-4xl">Cẩm nang du lịch</h1>
-          <Breadcrum
-            className="mt-5"
-            colorBreadcrumbPage={"white"}
-            colorBreadcrumbLink={"white"}
-            items={[
-              { href: "/", title: "Home" },
-              { title: "Cẩm nang du lịch", isCurrentPage: true },
-            ]}
-          />
+      <div className="container px-2 mx-auto ">
+        <div className="py-4">
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/">Trang chủ</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator>/</BreadcrumbSeparator>
+              <BreadcrumbItem>
+                <BreadcrumbPage>Cẩm nang du lịch</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
         </div>
-      </div>
-      <div className="container px-2 mx-auto mt-10 ">
-        <span>
-          <a
-            href="your-url"
-            className="text-blue-500 hover:text-red-500 font-bold"
-          >
-            Cẩm nang du lịch Châu Âu – Úc
-          </a>{" "}
-          – Tổng hợp bài viết về các thông tin {""}
-          <a
-            href="your-url"
-            className="text-blue-500 hover:text-red-500 font-bold"
-          >
-            kinh nghiệm du lịch Châu Âu,
-          </a>{" "}
-          điểm đến, văn hóa, ẩm thực, lễ hội… của các quốc gia Châu Âu được {""}
-          <a href="your-url" className="text-black font-bold text-xl">
-            EuroTravel
-          </a>{" "}
-          biên tập cập nhật mới, thường xuyên giúp du khách có được những hành
-          trang tốt nhất trước khi đi tham gia {""}
-          <a href="your-url" className="text-black font-bold text-xl">
-            tour du lịch Châu Âu.
-          </a>{" "}
-        </span>
-        <div className="mt-5">
-          <span>
-            Tham khảo những{" "}
-            <a href="your-url" className="text-black font-bold text-xl">
-              cẩm nang đi du lịch Châu Âu
-            </a>{" "}
-            đang được nhiều khách hàng quan tâm nhất hiện nay.
-          </span>
+        <div className="bg-blue-50 p-8 rounded-lg">
+          <div className="md:flex md:justify-between">
+            <div className="">
+              <h2 className="text-3xl font-bold text-main mb-4">Cẩm nang du lịch</h2>
+              <p className="text-gray-700 mb-4">Bước vào cuộc hành trình khám phá Châu Âu với những cẩm nang du lịch độc đáo, được tổng hợp từ những người đam mê du lịch và chuyên gia hàng đầu. Tìm hiểu về những điểm đến tuyệt vời, văn hóa sâu sắc, ẩm thực độc đáo và lễ hội hấp dẫn trên khắp lục địa già.</p>
+              <p className="text-gray-700 mb-4">Cẩm nang du lịch Châu Âu – Úc – là nguồn thông tin tin cậy để bạn khám phá những kỳ quan của Châu Âu. Từ các kinh nghiệm du lịch đến những bí quyết du lịch thông minh, chúng tôi luôn cập nhật những thông tin mới nhất giúp bạn chuẩn bị tốt nhất cho hành trình của mình.</p>
+            </div>
+          </div>
+          <BlogList />
         </div>
-        <BlogList
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 mt-10 justify-items-center items-center mx-auto w-full sm:w-3/4"
-          classNameTitle="text-center text-xl font-bold"
-          classNameCard="w-72 h-30 flex flex-col items-center"
-          classNameImage="flex flex-col items-center justify-center"
-        />
         {dataTravelBlogsHeader.map((headerItem: any, headerIndex: any) => (
           <div key={headerIndex}>
             <h2 className="text-2xl text-main font-bold my-5">

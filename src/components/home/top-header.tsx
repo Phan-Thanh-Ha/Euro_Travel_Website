@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default async function TopHeader({ dataSetting = [], dataMenu = [] }) {
-  let setting = await handleDataSetting(dataSetting);
+  let setting = dataSetting;
   return (
     <>
       <div className="text-center md:hidden bg-main text-white font-bold text-xs md:text-sm py-1 md:py-2">
@@ -13,7 +13,7 @@ export default async function TopHeader({ dataSetting = [], dataMenu = [] }) {
       </div>
       <section
         className={`w-full bg-cover bg-no-repeat bg-center bg-transparent   `}
-        style={{ backgroundImage: `url('${setting?.ImageABoutUs}')` }}
+        style={{ backgroundImage: `url('${setting?.Bg}')` }}
       >
         <div className="bg-white/50 backdrop-blur-sm md:bg-white/30">
           <div className="lg:container flex flex-row ">

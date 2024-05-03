@@ -2,7 +2,7 @@ import envConfig from "../../config";
 
 export const handleDataSetting = async (settingData: any[]) => {
   if (settingData.length === 0 && Array.isArray(settingData)) return;
-  const settings = settingData.reduce((acc: any, setting: any) => {
+  const settings = settingData?.reduce((acc: any, setting: any) => {
     acc[setting.KeySetting] = setting.DataSetting;
     return acc;
   }, {});
@@ -45,6 +45,8 @@ export const handleDataSetting = async (settingData: any[]) => {
     IntroduceContent2,
     PaymentMethod,
     ImageAboutUsHome,
+    BgFooter,
+    Bg,
   } = settings;
   let LogoUrl = envConfig.NEXT_PUBLIC_CDN + Logo?.replace(",", "");
   let ImageABoutUsUrl =
@@ -52,6 +54,8 @@ export const handleDataSetting = async (settingData: any[]) => {
     (ImageABoutUs || "/images/bg-header.jpg")?.replace(",", "");
   let ImageAboutUsHomeUrl =
     envConfig.NEXT_PUBLIC_CDN + ImageAboutUsHome?.replace(",", "");
+  let BgFooterUrl = envConfig.NEXT_PUBLIC_CDN + BgFooter?.replace(",", "");
+  let BgUrl = envConfig.NEXT_PUBLIC_CDN + Bg?.replace(",", "");
 
   let data = {
     Logo: LogoUrl,
@@ -92,6 +96,8 @@ export const handleDataSetting = async (settingData: any[]) => {
     IntroduceContent2,
     PaymentMethod,
     ImageAboutUsHome: ImageAboutUsHomeUrl,
+    BgFooter: BgFooterUrl,
+    Bg: BgUrl,
   };
   return data;
 };

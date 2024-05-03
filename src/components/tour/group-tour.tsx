@@ -7,7 +7,6 @@ export default async function GroupTour() {
     Id: 0,
     Slug: "",
   });
-  console.log(toursGroup);
   return toursGroup.map((item, index) => {
     return (
       <div className="lg:container" key={index}>

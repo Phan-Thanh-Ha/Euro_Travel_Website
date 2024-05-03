@@ -4,8 +4,8 @@ import envConfig from "../../../../config";
 
 export default async function GalleryListPage() {
   let galleryData = await fetchGallery({ tagUrl: "", Type: "GALERY" });
-
   const groups = galleryData.reduce((acc: any[], item: any) => {
+    console.log("Images gallery",item);
     const images = item.Images.map((img: any) => ({
       id: img.GaleryId,
       src: envConfig.NEXT_PUBLIC_CDN + img.Image,

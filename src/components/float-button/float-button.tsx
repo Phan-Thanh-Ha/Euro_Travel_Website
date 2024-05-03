@@ -10,7 +10,6 @@ export default function FloatingButton() {
   useEffect(() => {
     function handleScroll() {
       const scrolled = window.scrollY;
-      console.log("scroll : ", scrolled)
       if (scrolled > 300) {
         setShowButton(true);
       } else {

@@ -21,17 +21,23 @@ export default async function Home() {
   const setting = await handleDataSetting(settings);
 
   return (
-    <main className="">
+    <main>
       <CarouselBanner banner={banner} />
       <SearchComponent />
-      <GroupTour />
-      <NewspaperAboutUsSection data={banner} />
-      <FeedbackCustomer data={banner} />
-      <AboutUsSection setting={setting} />
-      <ImageCustomerSection data={banner} />
-      <PlaceTravelSection data={banner} />
-      <DiscoverWith data={banner} />
-      <PartnerSection data={banner} />
+      <div className="relative">
+        <div className=" fixed top-[10%] left-7 -z-50">
+          <div className="h-[300px] bg-main w-40"></div>
+        </div>
+
+        <GroupTour />
+        <NewspaperAboutUsSection data={banner} />
+        <FeedbackCustomer data={banner} />
+        <AboutUsSection setting={setting} />
+        <ImageCustomerSection data={banner} />
+        <PlaceTravelSection data={banner} />
+        <DiscoverWith data={banner} />
+        <PartnerSection data={banner} />
+      </div>
     </main>
   );
 }
