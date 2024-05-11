@@ -17,12 +17,14 @@ type SelectDateProps = {
   value: Date;
   setValue: (value: Date) => void;
   className?: string;
+  title: string;
 };
 
 export function SelectDate({
   value,
   setValue,
   className = "w-[240px]",
+  title = " Ngày khởi hành",
 }: SelectDateProps) {
   return (
     <Popover>
@@ -30,12 +32,17 @@ export function SelectDate({
         <Button
           variant={"outline"}
           className={cn(
-            "justify-start text-left font-normal text-base",
-            !value && "text-muted-foreground" && className
+            "justify-start text-left font-normal text-base ",
+            className
           )}
         >
-          <CalendarIcon className="mr-2 h-4 w-4" />
-          {value ? format(value, "dd/MM/yyyy") : <span>Chọn ngày</span>}
+          <div className="flex flex-col ">
+            <span className="text-sm">{title}</span>
+            <span className="flex flex-row items-center">
+              <CalendarIcon className="mr-2 h-4 w-4 text-base md:text-xl" />
+              {value ? format(value, "dd/MM/yyyy") : <span>Chọn ngày</span>}
+            </span>
+          </div>
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-full p-0" align="start">

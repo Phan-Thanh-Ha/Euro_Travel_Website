@@ -84,7 +84,7 @@ export default function Price({ data }: { data: any }) {
         </Table>
       </div>
       <div
-        dangerouslySetInnerHTML={{ __html: data?.DescriptionPrice }}
+        dangerouslySetInnerHTML={{ __html: data?.DescriptionPrice || "" }}
         className="mt-5"
       ></div>
     </div>

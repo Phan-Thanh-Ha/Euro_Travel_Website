@@ -18,11 +18,15 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+
 type ComboboxProps = {
   value: string;
   setValue: (value: string) => void;
   options: { value: string; label: string }[];
   title: string;
+  className: string;
+  placeholder: string;
+  textSize: string;
 };
 
 export function Combobox({
@@ -30,6 +34,9 @@ export function Combobox({
   setValue,
   options,
   title = "Vui lòng chọn...",
+  placeholder = "Vui lòng chọn...",
+  className,
+  textSize = "text-lg",
 }: ComboboxProps) {
   const [open, setOpen] = React.useState(false);
   // const [value, setValue] = React.useState("");
@@ -41,12 +48,22 @@ export function Combobox({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-full justify-between text-base  "
+          className={cn("!w-full justify-between text-base ", className)}
         >
-          {value
-            ? options.find((option) => option.value === value)?.label
-            : title}
-          <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          <div className="flex flex-col w-full ">
+            <span className="text-sm text-start">{title}</span>
+            <span
+              className={cn(
+                "flex flex-row items-center w-full justify-between ",
+                textSize
+              )}
+            >
+              {value
+                ? options.find((option) => option.value === value)?.label
+                : placeholder}
+              <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+            </span>
+          </div>
         </Button>
       </PopoverTrigger>
       <PopoverContent className=" p-0">

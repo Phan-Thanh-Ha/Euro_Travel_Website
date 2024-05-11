@@ -121,7 +121,9 @@ export default function FilterTour({
                 value={field.value}
                 setValue={field.onChange}
                 options={startPlaceOptions}
-                title="Chọn nơi khởi hành"
+                title=""
+                placeholder="Chọn nơi khởi hành"
+                textSize="text-base"
               />
             </FormItem>
           )}
@@ -140,7 +142,9 @@ export default function FilterTour({
                 value={field.value}
                 setValue={field.onChange}
                 options={endPlaceOptions}
-                title="Chọn điếm đến"
+                title=""
+                placeholder="Chọn điểm đến"
+                textSize="text-base"
               />
             </FormItem>
           )}

@@ -16,7 +16,7 @@ export default async function Blogs_Detail({
     Url: Url,
   });
   return (
-    <div className="container px-2 mx-auto mt-10 ">
+    <div className="container px-2 mx-auto my-2 ">
       <Breadcrum
         items={[
           {
@@ -27,18 +27,18 @@ export default async function Blogs_Detail({
               </>
             ),
           },
-          { title: "blogs", isCurrentPage: true },
-          { title: "Travel_Experience", isCurrentPage: true },
+          { title: "cẩm nang", isCurrentPage: true },
+          { title: "Chi tiết bài viết", isCurrentPage: true },
         ]}
       />
-      <div className="grid grid-cols-1 md:grid-cols-7 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-7 gap-4">
         <div className="md:col-span-5">
           <BlogDetailComp content={Content} />
         </div>
         <div className="md:col-span-2">
           {/* Bài viết mới || Tour mới  */}
           <NewTourComp />
-          <div className="mt-20">
+          <div className="mt-3 md:mt-10">
             <NewPagesComp />
           </div>
         </div>

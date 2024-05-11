@@ -16,7 +16,9 @@ export default function TourList({ data }: { data: any }) {
   };
 
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid md:grid-cols-2 gap-4">
+      <TourItem data={tourData} className="md:text-sm" />{" "}
+      <TourItem data={tourData} className="md:text-sm" />{" "}
       <TourItem data={tourData} className="md:text-sm" />{" "}
       <TourItem data={tourData} className="md:text-sm" />{" "}
       <TourItem data={tourData} className="md:text-sm" />{" "}

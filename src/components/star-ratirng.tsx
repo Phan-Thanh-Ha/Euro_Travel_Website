@@ -9,6 +9,7 @@ export default function StarRating({ rating }: StarRatingProps) {
       <div className="flex">
         {[...Array(5)].map((_, index) => (
           <svg
+            key={index}
             className={`w-4 h-4  ms-1 ${
               index < rating ? "text-yellow-400" : "text-gray-300"
             }`}

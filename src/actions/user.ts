@@ -84,3 +84,28 @@ export const register = async (data: RegisterData) => {
   } catch (error) {}
 };
 //#endregion
+
+/* region User register */
+export interface RegisterCustomerData {
+  CustomerName: string;
+  CustomerPhone: string;
+  CustomerEmail: string;
+  CustomerPassword: string;
+}
+
+export const registerCustomer = async (data: RegisterCustomerData) => {
+  try {
+    return await fetchMethod(data, "CMS_spCustomerRegister_Save");
+  } catch (error) {}
+}
+
+export interface LoginCustomerData {
+  Email : string;
+  Password : string;
+}
+
+export const loginCustomer = async (data: LoginCustomerData) => {
+  try {
+    return await fetchMethod(data, "CMS_spCustomer_Login");
+  } catch (error) {}
+}

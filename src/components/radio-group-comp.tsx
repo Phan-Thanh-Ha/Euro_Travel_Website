@@ -11,7 +11,6 @@ interface RadioCompProps {
 }
 
 const RadioComp: React.FC<RadioCompProps> = ({ data, onSelect, className }) => {
-  console.log("🚀🚀🚀 ======== data========", data);
   const [selectedValue, setSelectedValue] = useState("");
 
   const handleChange = (value: string) => {

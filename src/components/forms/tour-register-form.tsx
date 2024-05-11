@@ -237,6 +237,7 @@ export default function TourRegisterForm({
                   value={field.value}
                   setValue={field.onChange}
                   className="w-full"
+                  title=""
                 />
               </FormControl>
               <FormMessage />

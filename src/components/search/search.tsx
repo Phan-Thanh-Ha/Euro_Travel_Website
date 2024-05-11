@@ -3,12 +3,12 @@ import React from "react";
 
 export default function SearchComponent() {
   return (
-    <div className="bg-main h-full p-4 md:py-8 ">
-      <div className="md:container bg-white p-4 md:p-8 rounded-xl">
+    <div className="  w-full">
+      <div className="md:container bg-white/90 p-4 md:p-8 rounded-xl shadow-xl">
         {" "}
-        {/* <h2 className="text-xl font-semibold">
+        <h2 className="text-xl font-semibold text-blue-default text-center mb-4">
           Xin mời quý khách chọn chuyến du lịch
-        </h2> */}
+        </h2>
         <SearchForm />
       </div>
     </div>

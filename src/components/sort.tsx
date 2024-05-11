@@ -10,12 +10,11 @@ import {
 } from "@/components/ui/select";
 
 interface SortProps {
-    setSort: (sort: string) => void;
-    sort: string;
-    }
+  setSort: (sort: string) => void;
+  sort: string;
+}
 
-export default function SortComponent({setSort, sort}: SortProps) {
-
+export default function SortComponent({ setSort, sort }: SortProps) {
   return (
     <div className="flex flex-row items-center gap-2">
       <span>Sắp xếp theo</span>
@@ -26,8 +25,8 @@ export default function SortComponent({setSort, sort}: SortProps) {
         <SelectContent>
           <SelectGroup>
             <SelectItem value="1">Mới nhất</SelectItem>
-            <SelectItem value="2">Giá thấp -> cao</SelectItem>
-            <SelectItem value="3">Giá cao -> thấp</SelectItem>
+            <SelectItem value="2">Giá thấp -&gt; cao</SelectItem>
+            <SelectItem value="3">Giá cao -&gt; thấp</SelectItem>
           </SelectGroup>
         </SelectContent>
       </Select>

@@ -1,5 +1,6 @@
 import { fetchTourGroup, fetchTourGroups } from "@/actions/tour";
 import TourItem from "@/components/tour/tour-item-card";
+import { Separator } from "@/components/ui/separator";
 import React from "react";
 
 export default async function GroupTour() {
@@ -9,10 +10,11 @@ export default async function GroupTour() {
   });
   return toursGroup.map((item, index) => {
     return (
-      <div className="lg:container" key={index}>
+      <div className="lg:container mt-10" key={index}>
         <div className="flex flex-col items-center">
-          <h2 className="text-2xl font-bold text-main my-5  uppercase">
+          <h2 className=" text-xl md:text-2xl font-bold text-main my-5  uppercase">
             {item.NameVn}
+            <Separator className="mb-2" />
           </h2>
         </div>
         <div className=" grid md:grid-cols-3  gap-4 px-2 md:px-0">

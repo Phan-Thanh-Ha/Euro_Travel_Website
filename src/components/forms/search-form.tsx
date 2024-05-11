@@ -126,16 +126,18 @@ export default function SearchFrom({
           name="start"
           render={({ field }) => (
             <FormItem className="flex flex-col h-full justify-end">
-              <FormLabel className="font-bold text-base">
+              {/* <FormLabel className="font-bold text-base">
                 Nơi khởi hành
-              </FormLabel>
+              </FormLabel> */}
               <FormControl>{/* <SelectComp value {...field} /> */}</FormControl>
               <FormMessage />
               <Combobox
                 value={field.value}
                 setValue={field.onChange}
                 options={startPlaceOptions}
-                title="Chọn nơi khởi hành"
+                title="Nơi khởi hành"
+                placeholder="Chọn nơi khởi hành"
+                className="h-[80px] border-main "
               />
             </FormItem>
           )}
@@ -145,14 +147,16 @@ export default function SearchFrom({
           name="end"
           render={({ field }) => (
             <FormItem className="flex flex-col w-full  h-full justify-end">
-              <FormLabel className="font-bold text-base">Điểm đến</FormLabel>
+              {/* <FormLabel className="font-bold text-base">Điểm đến</FormLabel> */}
               <FormControl>{/* <SelectComp value {...field} /> */}</FormControl>
               <FormMessage />
               <Combobox
                 value={field.value}
                 setValue={field.onChange}
                 options={endPlaceOptions}
-                title="Chọn điếm đến"
+                title="Điếm đến"
+                placeholder="Chọn điểm đến"
+                className="h-[80px] border-main "
               />
             </FormItem>
           )}
@@ -162,16 +166,17 @@ export default function SearchFrom({
           name="date"
           render={({ field }) => (
             <FormItem className="flex flex-col w-full  h-full justify-end">
-              <FormLabel className="font-bold text-base">
+              {/* <FormLabel className="font-bold text-base">
                 Ngày khởi hành
-              </FormLabel>
+              </FormLabel> */}
               <FormMessage />
 
               <FormControl>
                 <SelectDate
                   value={field.value}
                   setValue={field.onChange}
-                  className="w-full"
+                  className="w-full h-[80px] border-main "
+                  title="Ngày khởi hành"
                 />
               </FormControl>
             </FormItem>
@@ -180,7 +185,10 @@ export default function SearchFrom({
 
         <div className="flex flex-col justify-end h-full">
           {" "}
-          <Button type="submit" className="w-full bg-main text-base ">
+          <Button
+            type="submit"
+            className="w-full bg-main h-[50px] md:h-[80px] hover:bg-main text-xl "
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width={24}

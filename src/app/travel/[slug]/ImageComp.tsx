@@ -9,14 +9,8 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 
-interface ImageProps {
-  Id: number;
-  PlaceSpecial: string; // Hình ảnh địa danh nỗi bật
-  ImageFeedback: string; // Hình ảnh KH trải nghiệm thực tế
-  ImageTour: string; //Hình ảnh tour nỗi bật
-}
 interface ImagePropsData {
-  data: ImageProps[];
+  data: [];
 }
 
 export default function ImageComp({ data }: ImagePropsData) {
@@ -40,10 +34,7 @@ export default function ImageComp({ data }: ImagePropsData) {
                 <Card className="rounded-lg shadow-sm hover:shadow-2xl duration-300 group h-full flex flex-col">
                   <Link href={`/blogs/detail/${item.Url}`}>
                     <Image
-                      src={
-                        envConfig.NEXT_PUBLIC_CDN +
-                        item.PlaceSpecial.split(",")[0]
-                      }
+                      src={envConfig.NEXT_PUBLIC_CDN + item}
                       alt="nature"
                       width={1200}
                       height={800}

@@ -32,7 +32,7 @@ export default function Intro({ data }: { data: any }) {
         </h2>
         <div
           className="content"
-          dangerouslySetInnerHTML={{ __html: data?.Description }}
+          dangerouslySetInnerHTML={{ __html: data?.Description || "" }}
         ></div>
       </div>
       <Accordion type="single" collapsible className="w-full md:hidden">
@@ -63,7 +63,7 @@ export default function Intro({ data }: { data: any }) {
           <AccordionContent className="border-none">
             <div
               className="content leading-8"
-              dangerouslySetInnerHTML={{ __html: data?.Description }}
+              dangerouslySetInnerHTML={{ __html: data?.Description || "" }}
             ></div>
           </AccordionContent>
         </AccordionItem>

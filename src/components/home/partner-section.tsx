@@ -17,7 +17,7 @@ export default function PartnerSection({ data }: { data: any }) {
     <div className="flex flex-col gap-12 lg:my-10 my-4 px-2 md:px-0">
       <div className="container mx-auto">
         <div className="flex flex-col items-center">
-          <h2 className="text-lg md:text-2xl font-bold text-main my-5 mb-0 md:my-8  uppercase">
+          <h2 className="text-lg md:text-2xl font-bold text-main mt-5 mb-0 md:mt-8  uppercase">
             Đối tác của EuroTravel
             <Separator className="my-3" />
           </h2>

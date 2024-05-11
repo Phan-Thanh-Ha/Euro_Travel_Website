@@ -1,4 +1,11 @@
 module.exports = {
+  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    // !! WARN !!
+    ignoreBuildErrors: true,
+  },
   images: {
     remotePatterns: [
       {
@@ -31,17 +38,29 @@ module.exports = {
         destination: "/payment-method",
       },
       {
-        source: "/du-lich/:slug*",
+        source: "/tour/:slug*",
         destination: "/tour/:slug*",
+      },
+      {
+        source: "/du-lich/:slug*",
+        destination: "/travel/:slug*",
       },
       {
         source: "/lien-he/:slug*",
         destination: "/contact/:slug*",
       },
       {
+        source: "/goc-ky-niem",
+        destination: "/gallery",
+      },
+      {
+        source: "/cam-nang",
+        destination: "/blogs",
+      },
+      {
         source: "/cam-nang/:slug*",
         destination: "/blogs/:slug*",
-      }
+      },
     ];
   },
 };

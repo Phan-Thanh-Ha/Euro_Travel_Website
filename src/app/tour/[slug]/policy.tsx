@@ -32,7 +32,7 @@ export default function Policy({ tour }: { tour: any }) {
         </h2>
         <div
           className="content"
-          dangerouslySetInnerHTML={{ __html: tour?.RulesTour }}
+          dangerouslySetInnerHTML={{ __html: tour?.RulesTour || "" }}
         ></div>
       </div>
       <Accordion type="single" collapsible className="w-full md:hidden">
@@ -63,7 +63,7 @@ export default function Policy({ tour }: { tour: any }) {
           <AccordionContent className="border-none">
             <div
               className="content leading-8"
-              dangerouslySetInnerHTML={{ __html: tour?.RulesTour }}
+              dangerouslySetInnerHTML={{ __html: tour?.RulesTour || "" }}
             ></div>
           </AccordionContent>
         </AccordionItem>

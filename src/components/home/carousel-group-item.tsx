@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/carousel";
 
 import ProductItem from "@/components/product/product-item";
+import Image from "next/image";
 export default function CarouselGroupProductItem({ group }: { group: any }) {
   return (
     <div className="container mx-auto">
@@ -22,7 +23,7 @@ export default function CarouselGroupProductItem({ group }: { group: any }) {
         <div className="justify-between py-2">
           <h2 className="text-2xl font-bold text-main text-center">
             {group.Name}
-            <img
+            <Image
               src="/images/divider.png"
               alt="Divider"
               className="h-2 mx-auto my-3"

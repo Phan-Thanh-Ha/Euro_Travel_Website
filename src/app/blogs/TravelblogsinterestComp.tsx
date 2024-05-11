@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const BlogList: React.FC<any> = () => {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-2">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-1">
       {dataTravelBlogs.map((item) => (
         <div key={item.Id}>
           <a href={item.Link} className="block">
@@ -20,7 +20,7 @@ const BlogList: React.FC<any> = () => {
                 />
               </div>
               <div className="absolute bottom-0 left-0 w-full bg-slate-700 bg-opacity-60 p-4">
-                <p className="text-white font-serif text-xl font-bold transition duration-300 ease-in-out">
+                <p className="text-white text-xl transition duration-300 ease-in-out">
                   {item.Title}
                 </p>
               </div>

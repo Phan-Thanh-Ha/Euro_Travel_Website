@@ -11,7 +11,7 @@ export default async function Header() {
   let setting = await handleDataSetting(settingData);
 
   return (
-    <header className=" sticky -top-6 md:-top-[100px] z-50">
+    <header className="sticky top-0 z-50">
       <TopHeader dataSetting={setting} dataMenu={data} />
       <Menu data={data} setting={setting} />
     </header>

@@ -10,6 +10,7 @@ export async function fetchMethod(data: object, func: string) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+
     },
     body: JSON.stringify({
       Json: JSON.stringify(dataPost),

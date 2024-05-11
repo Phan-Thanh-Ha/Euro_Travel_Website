@@ -1,6 +1,6 @@
 import BlogList from "@/app/blogs/TravelblogsinterestComp";
 import { dataTravelBlogsHeader } from "@/app/blogs/data";
-import { Card, CardContent, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -14,26 +14,41 @@ import envConfig from "../../../config";
 import { format } from "date-fns";
 import { fetchHandBook } from "@/actions/blogs";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
+import { Breadcrum } from "@/components/home/bread-crumb";
+import { HomeIcon } from "@radix-ui/react-icons";
+import BlogCard from "@/components/blogs/card-blog";
 export default async function Blogs() {
   const HandBookList = await fetchHandBook({
-    Take: 7,
+    Take: 100,
     Url: "/cam-nang",
   });
+
+  /* Kinh nghiệm du lịch */
+  const data1 = HandBookList.filter((item: any) => item.CategoriesId.includes("61"));
+  /* Địa điểm du lịch */
+  const data2 = HandBookList.filter((item: any) => item.CategoriesId.includes("62"));
+  /* Văn hóa ẩm thực */
+  const data3 = HandBookList.filter((item: any) => item.CategoriesId.includes("63"));
+  /* Tin tức du lịch */
+  const data4 = HandBookList.filter((item: any) => item.CategoriesId.includes("64"));
+
   return (
     <div>
       <div className="container px-2 mx-auto ">
         <div className="py-4">
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/">Trang chủ</BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator>/</BreadcrumbSeparator>
-              <BreadcrumbItem>
-                <BreadcrumbPage>Cẩm nang du lịch</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
+          <Breadcrum
+            items={[
+              {
+                href: "/",
+                title: (
+                  <>
+                    <HomeIcon />
+                  </>
+                ),
+              },
+              { title: "Cẩm nang", isCurrentPage: true }
+            ]}
+          />
         </div>
         <div className="bg-blue-50 p-8 rounded-lg">
           <div className="md:flex md:justify-between">
@@ -45,10 +60,11 @@ export default async function Blogs() {
           </div>
           <BlogList />
         </div>
-        {dataTravelBlogsHeader.map((headerItem: any, headerIndex: any) => (
-          <div key={headerIndex}>
+        <div>
+          {/* 1 */}
+          <div>
             <h2 className="text-2xl text-main font-bold my-5">
-              {headerItem?.Title}
+              Kinh nghiệm du lịch
             </h2>
             <Carousel
               className="w-full max-w-full group "
@@ -59,57 +75,14 @@ export default async function Blogs() {
               }}
             >
               <CarouselContent>
-                {HandBookList?.map((item: any, index: number) => {
+                {data1.slice(0, 6)?.map((item: any, index: number) => {
+
                   return (
                     <CarouselItem
                       key={index}
                       className="  rounded-lg  pl-3  md:basis-1/3 basis-[85%] "
                     >
-                      <Card className="rounded-lg shadow-sm hover:shadow-2xl duration-300 group h-full flex flex-col">
-                        <Link href={`/blogs/detail/${item.Url}`}>
-                          <Image
-                            src={
-                              envConfig.NEXT_PUBLIC_CDN +
-                              item.Images.split(",")[0]
-                            }
-                            alt="nature"
-                            width={1200}
-                            height={800}
-                            quality={100}
-                            className="w-full h-[230px] md:h-[250px] object-cover  
-                        group-hover:scale-103  duration-300 ease-in-out overflow-hidden rounded-lg"
-                          />
-                        </Link>
-                        <CardContent className=" p-2 py-4 md:p-4  relative flex-grow">
-                          <div className="flex flex-col gap-1 h-full">
-                            <div className="flex justify-between">
-                              <CardTitle className="flex-none text-black font-normal uppercase leading-4 mb-3 text-base cursor-pointer w-1/2">
-                                <Link href={`${item.MenuUrl}/${item.Url}`}>
-                                  {format(
-                                    new Date(item.CreateOn),
-                                    "HH:mm dd/MM/yyyy"
-                                  )}
-                                </Link>
-                              </CardTitle>
-                              <CardTitle className="flex-none text-black font-normal uppercase leading-4 mb-3 text-base cursor-pointer w-1/2">
-                                <Link href={`${item.MenuUrl}/${item.Url}`}>
-                                  {`${item.StaffName}`}
-                                </Link>
-                              </CardTitle>
-                            </div>
-                            <CardTitle className="flex-none text-main uppercase leading-4 mb-3 font-bold text-base cursor-pointer">
-                              <Link href={`${item.MenuUrl}/${item.Url}`}>
-                                {item.Title}
-                              </Link>
-                            </CardTitle>
-                            <CardTitle className="w-full font-light">
-                              {item.Description.length > 70
-                                ? item.Description.slice(0, 70) + "..."
-                                : item.Description}
-                            </CardTitle>
-                          </div>
-                        </CardContent>
-                      </Card>
+                      <BlogCard item={item} />
                     </CarouselItem>
                   );
                 })}
@@ -118,7 +91,94 @@ export default async function Blogs() {
               <CarouselNext className="right-4  bg-main/50  text-white  hidden  disabled:hidden md:group-hover:flex" />
             </Carousel>
           </div>
-        ))}
+          {/* 2 */}
+          <div>
+            <h2 className="text-2xl text-main font-bold my-5">
+              Địa điểm du lịch
+            </h2>
+            <Carousel
+              className="w-full max-w-full group "
+              opts={{
+                align: "center",
+                slidesToScroll: "auto",
+                loop: true,
+              }}
+            >
+              <CarouselContent>
+                {data2.slice(0, 6)?.map((item: any, index: number) => {
+                  return (
+                    <CarouselItem
+                      key={index}
+                      className="  rounded-lg  pl-3  md:basis-1/3 basis-[85%] "
+                    >
+                      <BlogCard item={item} />
+                    </CarouselItem>
+                  );
+                })}
+              </CarouselContent>
+              <CarouselPrevious className="left-4 bg-main/50 text-white hidden  disabled:hidden md:group-hover:flex" />
+              <CarouselNext className="right-4  bg-main/50  text-white  hidden  disabled:hidden md:group-hover:flex" />
+            </Carousel>
+          </div>
+          {/* 3 */}
+          <div>
+            <h2 className="text-2xl text-main font-bold my-5">
+              Văn hóa ẩm thực
+            </h2>
+            <Carousel
+              className="w-full max-w-full group "
+              opts={{
+                align: "center",
+                slidesToScroll: "auto",
+                loop: true,
+              }}
+            >
+              <CarouselContent>
+                {data3.slice(0, 6)?.map((item: any, index: number) => {
+                  return (
+                    <CarouselItem
+                      key={index}
+                      className="  rounded-lg  pl-3  md:basis-1/3 basis-[85%] "
+                    >
+                      <BlogCard item={item} />
+                    </CarouselItem>
+                  );
+                })}
+              </CarouselContent>
+              <CarouselPrevious className="left-4 bg-main/50 text-white hidden  disabled:hidden md:group-hover:flex" />
+              <CarouselNext className="right-4  bg-main/50  text-white  hidden  disabled:hidden md:group-hover:flex" />
+            </Carousel>
+          </div>
+          {/* 3 */}
+          <div>
+            <h2 className="text-2xl text-main font-bold my-5">
+              Tin tức du lịch
+            </h2>
+            <Carousel
+              className="w-full max-w-full group "
+              opts={{
+                align: "center",
+                slidesToScroll: "auto",
+                loop: true,
+              }}
+            >
+              <CarouselContent>
+                {data3.slice(0, 6)?.map((item: any, index: number) => {
+                  return (
+                    <CarouselItem
+                      key={index}
+                      className="  rounded-lg  pl-3  md:basis-1/3 basis-[85%] "
+                    >
+                      <BlogCard item={item} />
+                    </CarouselItem>
+                  );
+                })}
+              </CarouselContent>
+              <CarouselPrevious className="left-4 bg-main/50 text-white hidden  disabled:hidden md:group-hover:flex" />
+              <CarouselNext className="right-4  bg-main/50  text-white  hidden  disabled:hidden md:group-hover:flex" />
+            </Carousel>
+          </div>
+        </div>
       </div>
     </div>
   );

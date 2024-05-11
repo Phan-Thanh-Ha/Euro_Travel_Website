@@ -29,6 +29,7 @@ const config = {
     extend: {
       colors: {
         main: "#d52028",
+        two: "#1d246c",
         "main-100": "#cf2e2e",
         "main-50": "#cf2e2e",
         "blue-default": "rgb(29, 36, 108)",

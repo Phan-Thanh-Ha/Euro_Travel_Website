@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { Bai_Jamjuree } from "next/font/google";
 import "./globals.css";
@@ -6,9 +6,15 @@ import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import { GlobalProvider } from "@/store";
 import FloatingButton from "@/components/float-button/float-button";
+import NextTopLoader from "nextjs-toploader";
+import Provider, { NextAuthProvider } from "@/components/Provider";
 
 const sans = Bai_Jamjuree({ weight: "500", subsets: ["vietnamese"] });
-
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#d52028",
+};
 export const metadata: Metadata = {
   title: "EuroTravel - Thương Hiệu Chuyên Tour Uy Tín Tại Việt Nam",
   description:
@@ -34,13 +40,29 @@ export default function RootLayout({
         />
       </head>
       <body className={sans.className + " font-lato"}>
-        <GlobalProvider>
-          {" "}
-          <Header />
-          {children}
-          <FloatingButton />
-          <Footer />
-        </GlobalProvider>
+        <NextTopLoader
+          color="#1d246c"
+          initialPosition={0.08}
+          crawlSpeed={200}
+          height={3}
+          crawl={true}
+          showSpinner={true}
+          easing="ease"
+          speed={200}
+          shadow="0 0 10px #1d246c,0 0 5px #1d246c"
+          template='<div class="bar" role="bar"><div class="peg"></div></div> 
+ '
+          zIndex={1600}
+          showAtBottom={false}
+        />
+        <NextAuthProvider>
+          <GlobalProvider>
+            <Header />
+            {children}
+            <FloatingButton />
+            <Footer />
+          </GlobalProvider>
+        </NextAuthProvider>
       </body>
     </html>
   );

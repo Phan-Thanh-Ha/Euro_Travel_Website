@@ -1,11 +1,11 @@
 import { fetchGallery } from "@/actions/gallery";
 import React from "react";
 import envConfig from "../../../../config";
+import Image from "next/image";
 
 export default async function GalleryListPage() {
   let galleryData = await fetchGallery({ tagUrl: "", Type: "GALERY" });
   const groups = galleryData.reduce((acc: any[], item: any) => {
-    console.log("Images gallery",item);
     const images = item.Images.map((img: any) => ({
       id: img.GaleryId,
       src: envConfig.NEXT_PUBLIC_CDN + img.Image,
@@ -26,7 +26,7 @@ export default async function GalleryListPage() {
             <div key={groupIndex} className="grid gap-4 h-fit">
               {group.map((img: any, imgIndex: number) => (
                 <div key={imgIndex} className="">
-                  <img
+                  <Image
                     className="h-auto max-w-full rounded-lg"
                     src={img.src}
                     alt={img.alt}
