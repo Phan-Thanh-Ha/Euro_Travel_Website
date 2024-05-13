@@ -1,15 +1,39 @@
+"use client";
 import { dataGallery } from "./data";
 import Link from "next/link";
 import SliderShow from "./SlideShow";
 import Rating from "./Rating";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 import ListImageTour from "./ListImageTour";
+import { fetchGallery } from "@/actions/gallery";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
-export default async function Gallery() {
+export default function Gallery() {
+  const pathname = usePathname();
+  const [galleryImages, setGalleryImages] = useState([]);
+  useEffect(() => {
+    galleryImage(pathname);
+  }, [pathname]);
+  let galleryImage = async (pathname: string) => {
+    let res = await fetchGallery({
+      Url: pathname.replace("/", ""),
+      IsAll: true,
+    });
+    setGalleryImages(res);
+  };
+  console.log(galleryImages);
   return (
     <div className="container">
       <div className="w-full px-4">
-        <div className="pt-2">
+        <div className="py-5">
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
@@ -17,15 +41,15 @@ export default async function Gallery() {
               </BreadcrumbItem>
               <BreadcrumbSeparator>/</BreadcrumbSeparator>
               <BreadcrumbItem>
-                <BreadcrumbPage>Góc kỷ niệm</BreadcrumbPage>
+                <BreadcrumbPage>{galleryImages[0]?.ParentName}</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
         </div>
         {/* slide show các tour chính */}
         <div className="md:pb-6 flex justify-center">
-          <div className="h-[300px] md:h-[700px] w-full pt-3">
-            <SliderShow data={dataGallery} />
+          <div className="h-[300px] md:h-[700px] w-full">
+            <SliderShow data={galleryImages} />
           </div>
         </div>
         {/* Tiêu đề chính */}
@@ -35,32 +59,34 @@ export default async function Gallery() {
             trải nghiệm văn hóa địa phương, thưởng thức ẩm thực và nhiều hoạt
             động khác được quý khách hàng sử dụng dịch vụ tour du lịch cao cấp
             Âu – Úc – Mỹ tại
-            <a className="text-blue-500 hover:underline" href="/">
+            <Link className="text-blue-500 hover:underline" href="/">
               {" "}
               EuroTravel
-            </a>
+            </Link>
             .
           </h1>
         </div>
         {/* map dữ liệu tour và hình ảnh */}
         <div className="w-full">
-          {dataGallery.map((item, index) => (
+          {galleryImages?.map((item: any, index: number) => (
             <div key={index} className="pb-4">
               <div className="flex justify-center ">
                 <div className="flex flex-col items-center">
                   <h2 className="text-lg md:text-2xl font-bold text-main mt-2 md:mt-6 text-center uppercase">
-                    <Link href={item.url}>{item.Title}</Link>
+                    <Link href={`${pathname}/${item.TagUrl}`}>
+                      {item.TagName} cùng EuroTravel
+                    </Link>
                   </h2>
                 </div>
               </div>
               <div className="flex justify-center mb-2">
-                <Rating rating={item.rating} />
+                <Rating rating={5} />
               </div>
               <div className="w-full">
                 <ListImageTour data={item.Images} />
               </div>
               <div className="flex justify-center">
-                <Link href={item.url}>
+                <Link href={`${pathname}/${item.TagUrl}`}>
                   <button className="bg-main text-white text-sm md:text-xl py-2 px-11 my-3 rounded-lg shadow-md hover:bg-red-500">
                     Xem thêm
                   </button>

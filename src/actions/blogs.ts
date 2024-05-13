@@ -4,11 +4,12 @@ import { fetchMethod } from "@/actions/fetchFunctions";
 interface FetchBlogData {
   Take: number;
   Url: string;
+  IsHot: boolean;
 }
 export const fetchHandBook = async (data: FetchBlogData) => {
   try {
     return await fetchMethod(data, "CMS_spBlogs_Handbook_List");
-  } catch (error) { }
+  } catch (error) {}
 };
 // #endregion
 
@@ -20,7 +21,7 @@ interface FetchNewPage {
 export const fetchNewPage = async (data: FetchNewPage) => {
   try {
     return await fetchMethod(data, "CMS_spBlogs_NewPage_List");
-  } catch (error) { }
+  } catch (error) {}
 };
 // #endregion
 
@@ -32,6 +33,6 @@ interface FetchContent {
 export const fetchContent = async (data: FetchContent) => {
   try {
     return await fetchMethod(data, "CMS_spBlogs_Content");
-  } catch (error) { }
+  } catch (error) {}
 };
 // #endregion

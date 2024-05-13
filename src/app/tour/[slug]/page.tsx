@@ -45,7 +45,7 @@ export default async function TourDetail({
     Id: 0,
     Slug: "/" + slug,
   });
-  const tour: Tour = tours[0];
+  let tour: Tour = tours?.length > 0 ? tours[0] : {};
   let tourImages = tour?.Image?.split(",") || [];
   if (tourImages[tourImages.length - 1] === "") {
     tourImages.pop();
@@ -55,7 +55,7 @@ export default async function TourDetail({
   const from =
     tour?.DeparturePoint?.replace(/;\s/g, " / ").replace(/ \/ $/, "") || "";
   const RenderDate = () => {
-    return tour?.DateStart.split(",").map((item) => {
+    return tour?.DateStart?.split(",")?.map((item) => {
       return (
         <span
           key={item}
@@ -71,7 +71,7 @@ export default async function TourDetail({
     <div
       className=" relative tour-detail-section 
   bg-contain bg-top bg-no-repeat   transition-[display] duration-500 z-3"
-      style={{ backgroundImage: `url("/images/bg1.jpg")` }}
+      style={{ backgroundImage: `url("/images/bg1.png")` }}
     >
       <div className="bg-white/90">
         <div className="lg:container relative tour-detail-section">
@@ -117,7 +117,7 @@ export default async function TourDetail({
                             height={563}
                             alt="product"
                             src={envConfig.NEXT_PUBLIC_CDN + item}
-                            className=" object-cover h-full w-auto rounded-lg  "
+                            className=" object-cover h-[300px] md:h-full w-full rounded-lg  "
                           />
                         </CarouselItem>
                       );
@@ -130,24 +130,26 @@ export default async function TourDetail({
               <div className="flex flex-col gap-2">
                 <div className="flex flex-col gap-4 flex-none">
                   <div className=" flex flex-row  gap-2 ">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width={24}
-                      height={24}
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="lucide lucide-land-plot stroke-main"
-                    >
-                      <path d="m12 8 6-3-6-3v10" />
-                      <path d="m8 11.99-5.5 3.14a1 1 0 0 0 0 1.74l8.5 4.86a2 2 0 0 0 2 0l8.5-4.86a1 1 0 0 0 0-1.74L16 12" />
-                      <path d="m6.49 12.85 11.02 6.3" />
-                      <path d="M17.51 12.85 6.5 19.15" />
-                    </svg>
-                    <span className="font-bold"> Điểm đến:</span>{" "}
+                    <span className=" flex flex-row gap-1 flex-none font-bold">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width={24}
+                        height={24}
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="lucide lucide-land-plot stroke-main"
+                      >
+                        <path d="m12 8 6-3-6-3v10" />
+                        <path d="m8 11.99-5.5 3.14a1 1 0 0 0 0 1.74l8.5 4.86a2 2 0 0 0 2 0l8.5-4.86a1 1 0 0 0 0-1.74L16 12" />
+                        <path d="m6.49 12.85 11.02 6.3" />
+                        <path d="M17.51 12.85 6.5 19.15" />
+                      </svg>
+                      <span className="font-bold"> Điểm đến:</span>{" "}
+                    </span>
                     <span>{to}</span>
                   </div>
                   <div className=" flex flex-row  gap-2 ">
@@ -171,31 +173,32 @@ export default async function TourDetail({
                     <span>{from}</span>
                   </div>
                   <div className="flex flex-row gap-2">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width={24}
-                      height={24}
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="lucide lucide-calendar-days stroke-main"
-                    >
-                      <path d="M8 2v4" />
-                      <path d="M16 2v4" />
-                      <rect width={18} height={18} x={3} y={4} rx={2} />
-                      <path d="M3 10h18" />
-                      <path d="M8 14h.01" />
-                      <path d="M12 14h.01" />
-                      <path d="M16 14h.01" />
-                      <path d="M8 18h.01" />
-                      <path d="M12 18h.01" />
-                      <path d="M16 18h.01" />
-                    </svg>
-
-                    <span className="font-bold"> Ngày khởi hành: </span>
+                    <span className=" flex flex-row gap-1 flex-none font-bold">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width={24}
+                        height={24}
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="lucide lucide-calendar-days stroke-main"
+                      >
+                        <path d="M8 2v4" />
+                        <path d="M16 2v4" />
+                        <rect width={18} height={18} x={3} y={4} rx={2} />
+                        <path d="M3 10h18" />
+                        <path d="M8 14h.01" />
+                        <path d="M12 14h.01" />
+                        <path d="M16 14h.01" />
+                        <path d="M8 18h.01" />
+                        <path d="M12 18h.01" />
+                        <path d="M16 18h.01" />
+                      </svg>{" "}
+                      Ngày khởi hành:{" "}
+                    </span>
                     <span className="flex flex-row flex-wrap gap-2">
                       <RenderDate />
                     </span>
@@ -234,7 +237,7 @@ export default async function TourDetail({
                       </span>
                     </div>
                     <button className="bg-main text-white text-xl py-4 rounded-lg col-span-2 md:col-span-1">
-                      Đặt ngay
+                      Đặt ngay1
                     </button>
                     <button className="bg-blue-default text-white text-xl py-4 rounded-lg col-span-2  md:col-span-1">
                       Chat với nhân viên
@@ -247,6 +250,34 @@ export default async function TourDetail({
 
           <div className="infor-section mt-10 relative leading-9 flex flex-col gap-10 md:gap-16 px-2">
             {tour?.Description && <Intro data={tour} />}
+            <div>
+              <h2 className="text-xl md:text-2xl font-bold  text-main mb-4 flex items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width={24}
+                  height={24}
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="lucide lucide-map"
+                >
+                  <path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z" />
+                  <path d="M15 5.764v15" />
+                  <path d="M9 3.236v15" />
+                </svg>
+                Bản đồ lịch trình
+              </h2>
+              <Image
+                src="/images/map.jpg"
+                width={1920}
+                height={1080}
+                className="rounded-lg w-full h-auto"
+                alt="map"
+              />
+            </div>
             <div>
               <h2 className="text-xl md:text-2xl font-bold  text-main mb-4 flex items-center gap-2">
                 <svg

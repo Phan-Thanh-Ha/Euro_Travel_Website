@@ -32,7 +32,7 @@ export default function ImageComp({ data }: ImagePropsData) {
                 className="  rounded-lg  pl-3  md:basis-1/3 basis-[85%] "
               >
                 <Card className="rounded-lg shadow-sm hover:shadow-2xl duration-300 group h-full flex flex-col">
-                  <Link href={`/blogs/detail/${item.Url}`}>
+                  <Link href={`/chi-tiet-bai-viet/${item.Url}`}>
                     <Image
                       src={envConfig.NEXT_PUBLIC_CDN + item}
                       alt="nature"

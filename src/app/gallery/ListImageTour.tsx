@@ -36,7 +36,7 @@ const ListImageTour = ({ data }: { data: any[] }) => {
                       src={`${envConfig.NEXT_PUBLIC_CDN + item.Image}`}
                       alt="image"
                       fill={true}
-                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                      quality={100}
                       className="rounded-lg"
                     />
                   </CardContent>

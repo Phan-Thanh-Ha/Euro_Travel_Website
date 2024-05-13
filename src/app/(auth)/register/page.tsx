@@ -20,12 +20,19 @@ const valid: Resolver<IFrom> = async (values) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const phoneRegex = /^[0-9]{10}$/;
   const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,15}$/;
+  const regexPhoneNumber = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
   const errors: any = {};
-
-  if(!passwordRegex.test(values.password)) {
+  if (!passwordRegex.test(values.password)) {
     errors.password = {
       type: "validatePassword",
-      message: "Mật khẩu từ 6 - 15 ký tự gồm chữ cái và số" 
+      message: "Mật khẩu từ 6 - 15 ký tự gồm chữ cái và số"
+    }
+  }
+
+  if (!regexPhoneNumber.test(values.phone)) {
+    errors.phone = {
+      type: "validatePhone",
+      message: "Số điện thoại không đúng.",
     }
   }
 
@@ -133,7 +140,7 @@ function Register() {
       <div className="absolute inset-0 z-10 flex justify-center items-center rounded-md">
         <div className="flex w-[600px] flex-col justify-center px-6 py-12 lg:px-8 bg-white rounded-md">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-            <h2 className="text-center text-2xl md:text-3xl font-bold leading-9 tracking-tight text-blue-900 uppercase">Đăng ký</h2>
+            <h2 className="text-center text-2xl md:text-3xl font-bold leading-9 tracking-tight text-blue-900 uppercase pt-6">Đăng ký</h2>
           </div>
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form className="space-y-2" onSubmit={handleSubmit(handleRegister)}>
@@ -284,9 +291,9 @@ function Register() {
                 </div>
               </div>
               <div>
-                <input type="submit" className={`flex w-full justify-center rounded-md px-3 py-2 mt-10 text-xl hover:cursor-pointer  leading-8 text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${stateRegister ? "bg-lime-500" : "bg-sky-500/75 hover:bg-sky-500"}`} value={stateRegister ? "Đăng ký thành công" : "Đăng ký"} />
+                <input type="submit" className={`flex w-full justify-center rounded-md px-3 py-2 mt-4 md:mt-10 text-xl hover:cursor-pointer  leading-8 text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${stateRegister ? "bg-lime-500" : "bg-sky-500/75 hover:bg-sky-500"}`} value={stateRegister ? "Đăng ký thành công" : "Đăng ký"} />
               </div>
-              <div className="h-[40px] overflow-hidden">
+              <div className="h-[20px] md:h-[40px] overflow-hidden">
                 {errorApi && <p className="text-yellow-600 text-sm text-center">{errorApi}</p>}
               </div>
               <div className="w-full mt-2 flex justify-center items-center">

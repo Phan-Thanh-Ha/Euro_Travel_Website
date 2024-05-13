@@ -1,3 +1,7 @@
+// ================================================
+// Group Tour Detail
+// ================================================
+
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -17,6 +21,9 @@ type TourItemProps = {
   Timeline: string;
   Slug: string;
   Price: number;
+  Id: number;
+  CodeTour: string;
+  QuantityCountry: number;
 };
 
 export default function TourItem({
@@ -52,7 +59,7 @@ export default function TourItem({
             height={800}
             quality={100}
             className="w-auto h-[235px] md:h-[250px] object-cover  
-           group-hover:scale-105  duration-300 ease-in-out overflow-hidden"
+            group-hover:scale-105  duration-300 ease-in-out overflow-hidden"
           />
         </CardHeader>
       </Link>
@@ -60,7 +67,7 @@ export default function TourItem({
       <CardContent className=" p-2 py-4 md:p-4  relative flex-grow">
         <span
           className="absolute -top-3 left-4 rounded-sm bg-main px-2 py-1 text-xs 
-         font-medium text-white z-10"
+          font-medium text-white z-10"
         >
           {data.Timeline}
         </span>
@@ -180,7 +187,9 @@ export default function TourItem({
             </div>
           </div>
           <div className="flex justify-between  gap-4 flex-none">
-            <DiaLogRegisterTour tourName={data.NameTour} />
+            <DiaLogRegisterTour
+              data={{ NameTour: data.NameTour, Slug: data.Slug }}
+            />
             <Button
               variant="outline"
               size={"lg"}

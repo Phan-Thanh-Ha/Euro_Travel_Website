@@ -17,7 +17,7 @@ const BlogCard: React.FC<CardProps> = ({ item }) => {
         </span>
       )}
       <div className="p-0 overflow-hidden rounded-t-lg cursor-pointer">
-        <Link href={"/blogs/detail/" + item?.Url ?? ""}>
+        <Link href={"/chi-tiet-bai-viet/" + item?.Url ?? ""}>
           <Image
             src={envConfig.NEXT_PUBLIC_CDN + item?.Images.split(",")[0]}
             alt={item?.Title}
@@ -39,7 +39,7 @@ const BlogCard: React.FC<CardProps> = ({ item }) => {
             </div>
           </div>
           <h3 className="flex-none text-main uppercase font-bold text-base cursor-pointer mb-2 hover:text-blue-800">
-            <Link href={"/blogs/detail/" + item?.Url ?? ""}>
+            <Link href={"/chi-tiet-bai-viet/" + item?.Url ?? ""}>
               {item?.Title}
             </Link>
           </h3>

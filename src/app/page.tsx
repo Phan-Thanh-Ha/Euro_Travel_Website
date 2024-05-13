@@ -7,13 +7,17 @@ import ImageCustomerSection from "@/components/home/image-customer-section";
 import NewspaperAboutUsSection from "@/components/home/newspapers-aboutus-section";
 import PartnerSection from "@/components/home/partner-section";
 import PlaceTravelSection from "@/components/home/place-travel-section";
-import SearchComponent from "@/components/search/search";
 import GroupTour from "@/components/tour/group-tour";
 import { handleDataSetting } from "@/utils/handleDataSetting";
 import Image from "next/image";
 import envConfig from "../../config";
 import Link from "next/link";
 import BannerBlogs from "@/components/blogs/banner-blog";
+import ModalAds from "@/components/modal-ads";
+import BackgroundLayout from "@/components/background-layout";
+import { motion } from "framer-motion";
+import MotionLayout from "@/components/motion-layout";
+import SnowfallComp from "@/components/snowfall";
 export default async function Home() {
   const banner = await fetchBanner({
     KeySelect: "",
@@ -28,6 +32,7 @@ export default async function Home() {
 
   return (
     <main className="">
+      <SnowfallComp />
       <CarouselBanner banner={banner} />
       <div className="relative md:mt-[150px]">
         <div className="hidden 2xl:block fixed top-20 left-0  z-10">
@@ -52,16 +57,41 @@ export default async function Home() {
             />
           </Link>
         </div>
-        <GroupTour />
 
-        <NewspaperAboutUsSection data={banner} />
-        <FeedbackCustomer data={banner} />
-        <AboutUsSection setting={setting} />
-        <ImageCustomerSection data={banner} />
-        <PlaceTravelSection data={banner} />
+        <BackgroundLayout>
+          <PlaceTravelSection data={banner} />
+        </BackgroundLayout>
+        <GroupTour />
+        <BackgroundLayout>
+          <AboutUsSection setting={setting} />
+        </BackgroundLayout>
+        <BackgroundLayout>
+          <MotionLayout>
+            <NewspaperAboutUsSection data={banner} />
+          </MotionLayout>
+        </BackgroundLayout>
+
+        <BackgroundLayout>
+          <MotionLayout>
+            <FeedbackCustomer data={banner} />
+          </MotionLayout>
+        </BackgroundLayout>
+
+        <BackgroundLayout>
+          <MotionLayout>
+            <ImageCustomerSection data={banner} />
+          </MotionLayout>
+        </BackgroundLayout>
+
         {/* <DiscoverWith data={banner} /> */}
-        <BannerBlogs />
+        <BackgroundLayout>
+          {" "}
+          <MotionLayout>
+            <BannerBlogs />
+          </MotionLayout>
+        </BackgroundLayout>
         <PartnerSection data={banner} />
+        <ModalAds banner={banner} />
       </div>
     </main>
   );

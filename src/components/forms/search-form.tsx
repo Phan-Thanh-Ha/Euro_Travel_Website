@@ -23,6 +23,9 @@ import useGlobalState from "@/hooks/useGlobalState";
 import { Combobox } from "@/components/combobox";
 import { SelectComp } from "@/components/select-comp";
 import { SelectDate } from "@/components/select-date";
+import SelectCountry from "@/components/select-country";
+import { fetchFilterTour } from "@/actions/tour";
+import { fetchCountry } from "@/actions/setting";
 
 const formSchema = z.object({
   start: z.string().min(1, {
@@ -37,59 +40,27 @@ const formSchema = z.object({
 });
 
 //   .strict();
-interface LoginFormProps extends React.ComponentProps<"form"> {
+interface SearchFormProps extends React.ComponentProps<"form"> {
   setOpen: (open: boolean) => void;
   setIsLogin: (isLogin: boolean) => void;
 }
 
 export type LoginBodyType = z.TypeOf<typeof formSchema>;
 
-export default function SearchFrom({
-  className,
-  setOpen,
-  setIsLogin,
-}: LoginFormProps) {
+export default function SearchFrom({ className }: SearchFormProps) {
   const [globalState, dispatch] = useGlobalState();
   const [loading, setLoading] = React.useState(false);
+  const [country, setCountry] = React.useState([]);
+  React.useEffect(() => {
+    (async () => {
+      let res = await fetchCountry({ Id: 0 });
+      setCountry(res);
+    })();
+  }, []);
   const router = useRouter();
   const startPlaceOptions = [
-    { value: "Hà Nội", label: "Hà Nội" },
-    { value: "Hồ Chí Minh", label: "Hồ Chí Minh" },
-  ];
-
-  const endPlaceOptions = [
-    { value: "Pháp", label: "Pháp" },
-    { value: "Thụy Sĩ", label: "Thụy Sĩ" },
-    { value: "Đức", label: "Đức" },
-    { value: "Ý", label: "Ý" },
-    { value: "Hà Lan", label: "Hà Lan" },
-    { value: "Bỉ", label: "Bỉ" },
-    { value: "Áo", label: "Áo" },
-    { value: "Hungary", label: "Hungary" },
-    { value: "Séc", label: "Séc" },
-    { value: "Hy Lạp", label: "Hy Lạp" },
-    { value: "Bồ Đào Nha", label: "Bồ Đào Nha" },
-    { value: "Tây Ban Nha", label: "Tây Ban Nha" },
-    { value: "Đan Mạch", label: "Đan Mạch" },
-    { value: "Thụy Điển", label: "Thụy Điển" },
-    { value: "Na Uy", label: "Na Uy" },
-    { value: "Phần Lan", label: "Phần Lan" },
-    { value: "Mỹ", label: "Mỹ" },
-    { value: "Canada", label: "Canada" },
-    { value: "Mexico", label: "Mexico" },
-    { value: "Brazil", label: "Brazil" },
-    { value: "Cuba", label: "Cuba" },
-    { value: "Úc", label: "Úc" },
-    { value: "New Zealand", label: "New Zealand" },
-    { value: "Nhật Bản", label: "Nhật Bản" },
-    { value: "Hàn Quốc", label: "Hàn Quốc" },
-    { value: "Singapore", label: "Singapore" },
-    { value: "Trung Quốc", label: "Trung Quốc" },
-    { value: "Dubai", label: "Dubai" },
-    { value: "Ấn Độ", label: "Ấn Độ" },
-    { value: "Ai Cập", label: "Ai Cập" },
-    { value: "Nam Phi", label: "Nam Phi" },
-    { value: "Morocco", label: "Morocco" },
+    { value: 1, label: "Hà Nội" },
+    { value: 2, label: "Hồ Chí Minh" },
   ];
 
   const form = useForm<LoginBodyType>({
@@ -104,13 +75,23 @@ export default function SearchFrom({
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       setLoading(true);
+      let start = startPlaceOptions.find((x) => x.label === values.start);
+      let end = country.find((x) => x.Name === values.end);
+      const response = await fetchFilterTour({
+        StartPlace: start?.value,
+        EndPlace: end?.Id,
+        Day: 0,
+        PriceFrom: 0,
+        PriceTo: 200000000,
+        // Date: values.date,
+      });
+      console.log(response);
     } catch (error) {
       console.error(error);
     } finally {
       setLoading(false);
     }
   }
-
   return (
     <Form {...form}>
       <form
@@ -150,10 +131,10 @@ export default function SearchFrom({
               {/* <FormLabel className="font-bold text-base">Điểm đến</FormLabel> */}
               <FormControl>{/* <SelectComp value {...field} /> */}</FormControl>
               <FormMessage />
-              <Combobox
+              <SelectCountry
                 value={field.value}
-                setValue={field.onChange}
-                options={endPlaceOptions}
+                onChange={field.onChange}
+                // options={endPlaceOptions}
                 title="Điếm đến"
                 placeholder="Chọn điểm đến"
                 className="h-[80px] border-main "

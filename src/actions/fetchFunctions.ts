@@ -17,7 +17,7 @@ export async function fetchMethod(data: object, func: string) {
       func: func,
       API_key: envConfig.NEXT_PUBLIC_API_KEY,
     }),
-    next: { revalidate: 3600 },
+    next: { revalidate: 60 },
   });
   if (!response.ok) {
     throw new Error(`Failed to fetch: ${response.status}`);

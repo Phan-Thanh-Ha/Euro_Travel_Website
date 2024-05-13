@@ -2,9 +2,16 @@ import { fetchGallery } from "@/actions/gallery";
 import React from "react";
 import envConfig from "../../../../config";
 import Image from "next/image";
+import { Breadcrum } from "@/components/home/bread-crumb";
+import { HomeIcon } from "@radix-ui/react-icons";
 
-export default async function GalleryListPage() {
-  let galleryData = await fetchGallery({ tagUrl: "", Type: "GALERY" });
+export default async function GalleryListPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const { slug } = params;
+  let galleryData = await fetchGallery({ Url: slug, IsAll: false });
   const groups = galleryData.reduce((acc: any[], item: any) => {
     const images = item.Images.map((img: any) => ({
       id: img.GaleryId,
@@ -17,19 +24,40 @@ export default async function GalleryListPage() {
     }
     return acc;
   }, []);
-
   return (
-    <div>
+    <div className="mx-2 mb-5">
+      <div className="my-5">
+        <Breadcrum
+          items={[
+            {
+              href: "/",
+              title: (
+                <>
+                  <HomeIcon />
+                </>
+              ),
+            },
+            {
+              href: "/",
+              title: galleryData[0]?.ParentName,
+            },
+            { title: galleryData[0].TagName, isCurrentPage: true },
+          ]}
+        />
+      </div>
       <div className="">
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4 ">
           {groups.map((group: any[], groupIndex: number) => (
             <div key={groupIndex} className="grid gap-4 h-fit">
               {group.map((img: any, imgIndex: number) => (
                 <div key={imgIndex} className="">
                   <Image
-                    className="h-auto max-w-full rounded-lg"
+                    className="h-auto w-full rounded-lg"
                     src={img.src}
                     alt={img.alt}
+                    width={500}
+                    height={500}
+                    quality={100}
                   />
                 </div>
               ))}

@@ -15,7 +15,7 @@ export default function ScheduleTour({ schedule }: { schedule: any }) {
           </AccordionTrigger>
           <AccordionContent className="relative">
             <div
-              dangerouslySetInnerHTML={{ __html: item.DescriptionSchedule }}
+              dangerouslySetInnerHTML={{ __html: item.Description }}
               className=" text-base  leading-8 pl-4"
             ></div>
             <span className="absolute left-0 inset-y-2 border-l-[1px] border-dashed"></span>

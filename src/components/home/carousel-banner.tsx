@@ -138,7 +138,7 @@ export default function CarouselBanner({ banner = [] }: { banner: any[] }) {
           <CarouselNext className="right-4" />
         </Carousel>
       </div> */}
-      <div className="md:absolute md:-bottom-[220px] px-2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 w-full">
+      <div className="md:absolute md:-bottom-[250px] px-2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 w-full">
         <SearchComponent />
       </div>
     </div>

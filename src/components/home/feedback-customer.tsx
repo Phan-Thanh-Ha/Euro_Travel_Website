@@ -47,7 +47,7 @@ export default function FeedbackCustomer({ data }: { data: any }) {
               return (
                 <CarouselItem
                   key={index}
-                  className="  rounded-lg  pl-3  lg:basis-1/3 basis-[85%] "
+                  className="  rounded-lg  pl-3  lg:basis-1/3 basis-[85%] pb-5"
                 >
                   <FeedbackItem
                     content={item.Content}
@@ -71,7 +71,7 @@ const FeedbackItem = ({ content, image, url, title }) => {
   return (
     <Card
       className="flex flex-col h-full rounded-lg shadow-none 
-     duration-300 group cursor-pointer border-none bg-red-100"
+     duration-300 group cursor-pointer border-none bg-white/80"
     >
       <CardHeader className="p-0 overflow-hidden rounded-t-lg flex-none flex items-center justify-center">
         <Link href={url} className="py-4">

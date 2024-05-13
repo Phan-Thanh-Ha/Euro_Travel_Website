@@ -95,4 +95,13 @@ export const fetchBlogs = async (data: FetchBlogData) => {
   } catch (error) {}
 };
 
+interface FetchCountryData {
+  Id: number;
+}
+export const fetchCountry = async (data: FetchCountryData) => {
+  try {
+    return await fetchMethod(data, "Trl_spCountry_List");
+  } catch (error) {}
+};
+
 //#endregion

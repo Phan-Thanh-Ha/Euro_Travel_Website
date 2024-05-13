@@ -6,7 +6,7 @@ export default async function Footer() {
     KeySetting: "",
   });
   return (
-    <footer className="">
+    <footer className="mt-10">
       <FooterData dataSetting={setting} />
     </footer>
   );

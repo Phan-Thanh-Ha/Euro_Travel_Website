@@ -59,22 +59,20 @@ export default function LoginPage() {
       const response = await loginCustomer(params);
       if (response[0]?.State === 0) {
         setErrorApi("");
+        console.log(response[0])
         window.localStorage.setItem("userLogin", EncodeObject(response[0]));
-        window.location.href = "/dashboard";
+        window.location.href = "/dashboard/customer";
       }
       if (response.Status === "NOTOK") {
         setErrorApi(response.ReturnMess);
       }
-      console.log(response);
     }
-    /* login succes */
-    /* push('/'); */
   };
   // ...
 
   // ...
   return (
-    <div className="relative overflow-hidden bg-gray-900 h-[100vh]">
+    <div className="relative overflow-hidden bg-gray-900 h-[100vh] p-4">
       <div className="absolute inset-0 z-0 opacity-70">
         <Image
           src="/images/bg3.jpg"
@@ -88,7 +86,7 @@ export default function LoginPage() {
       <div className="absolute inset-0 z-10 flex justify-center items-center rounded-md ">
         <div className="flex w-[600px] flex-col justify-center px-6 py-12 lg:px-8 bg-white rounded-md">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-            <h2 className="text-center text-3xl font-bold leading-9 tracking-tight text-blue-900 uppercase">
+            <h2 className="text-center text-2xl md:text-3xl font-bold leading-9 tracking-tight text-blue-900 uppercase">
               Đăng nhập
             </h2>
           </div>
@@ -197,7 +195,7 @@ export default function LoginPage() {
                   value="Đăng nhập"
                 />
               </div>
-              <div className="h-[40px] overflow-hidden">
+              <div className="h[20px] md:h-[40px] overflow-hidden">
                 {errorApi && (
                   <p className="text-yellow-600 text-sm text-center">
                     {errorApi}
@@ -206,7 +204,7 @@ export default function LoginPage() {
               </div>
             </form>
             <div className="flex justify-center">
-              <p className="text-sm text-gray-500 mt-4 leading-6 font-medium">
+              <p className="text-sm text-gray-500 mt-0 md:mt-4 leading-6 font-medium">
                 ----- Hoặc ---
               </p>
             </div>

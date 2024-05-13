@@ -7,10 +7,13 @@ export async function NewPagesComp() {
   const HandBookList = await fetchNewPage({
     Take: 7,
   });
-  const limitData = HandBookList.length <= 5 ? HandBookList : HandBookList.slice(0, 5);
+  const limitData =
+    HandBookList.length <= 5 ? HandBookList : HandBookList.slice(0, 5);
   return (
     <div className="col-span-1 space-y-2">
-      <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-main mb-3 border-b-[1px]">Bài viết mới</h1>
+      <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-main mb-3 border-b-[1px]">
+        Bài viết mới
+      </h1>
       {limitData.map((item: any, index: any) => (
         <div
           key={index}
@@ -29,7 +32,10 @@ export async function NewPagesComp() {
             </div>
             <div className="col-span-3">
               <div className="">
-                <Link href={`/blogs/detail/${item.Url}`} className=" hover:text-blue-700">
+                <Link
+                  href={`/chi-tiet-bai-viet/${item.Url}`}
+                  className=" hover:text-blue-700"
+                >
                   <p className="text-xl lg:text-sm text-black hover:text-blue-600">
                     {item.Title.length > 120
                       ? item.Title.slice(0, 120) + "..."
@@ -43,7 +49,9 @@ export async function NewPagesComp() {
       ))}
       <div className="flex justify-center">
         <button className="text-blue-600 hover:shadow-md hover:bg-main py-1 px-4 rounded-md m-2 bg-main-50">
-          <Link href="/blogs" className="text-white">Xem thêm</Link>
+          <Link href="/blogs" className="text-white">
+            Xem thêm
+          </Link>
         </button>
       </div>
     </div>

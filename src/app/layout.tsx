@@ -41,7 +41,7 @@ export default function RootLayout({
       </head>
       <body className={sans.className + " font-lato"}>
         <NextTopLoader
-          color="#1d246c"
+          color="#d52028"
           initialPosition={0.08}
           crawlSpeed={200}
           height={3}
@@ -49,7 +49,7 @@ export default function RootLayout({
           showSpinner={true}
           easing="ease"
           speed={200}
-          shadow="0 0 10px #1d246c,0 0 5px #1d246c"
+          shadow="0 0 10px #d52028,0 0 5px #d52028"
           template='<div class="bar" role="bar"><div class="peg"></div></div> 
  '
           zIndex={1600}

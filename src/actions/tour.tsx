@@ -1,9 +1,9 @@
 import { fetchMethod } from "@/actions/fetchFunctions";
 //#region lấy dữ liệu nhóm tour
-interface FetchTourGroup {
+interface FetchTourList {
   Id: number;
 }
-export const fetchTourGroup = async (data: FetchTourGroup) => {
+export const fetchTourList = async (data: FetchTourList) => {
   try {
     return await fetchMethod(data, "Trl_spTourManagement_List");
   } catch (error) {}
@@ -29,7 +29,8 @@ interface FetchTour {
 }
 export const fetchTour = async (data: FetchTour) => {
   try {
-    return await fetchMethod(data, "Trl_spTourManagement_Detail");
+    let res = await fetchMethod(data, "Trl_spTourManagement_Detail");
+    return res;
   } catch (error) {}
 };
 //#endregion
@@ -41,6 +42,22 @@ interface FetchTourListNew {
 export const fetchTourListNew = async (data: FetchTourListNew) => {
   try {
     return await fetchMethod(data, "CMS_spBlogs_Tour_List");
+  } catch (error) {}
+};
+// #endregion
+
+// #region lấy dữ liệu tour mới
+interface infFilter {
+  StartPlace: number;
+  EndPlace: number;
+  Day: string;
+  PriceFrom: number;
+  PriceTo: number;
+  Date: string;
+}
+export const fetchFilterTour = async (data: infFilter) => {
+  try {
+    return await fetchMethod(data, "CMS_spTour_Filter");
   } catch (error) {}
 };
 // #endregion

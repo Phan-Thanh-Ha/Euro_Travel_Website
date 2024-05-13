@@ -30,7 +30,7 @@ export default async function Blogs_Travel_Experience({
   }
   function getSrc(slug: string) {
     if (slug === "kinh-nghiem-du-lich") {
-      return "/images/bg2.jpg";
+      return "/images/bg2.png";
     }
     if (slug === "dia-diem-du-lich") {
       return "/images/dia-diem.jpg";
@@ -39,7 +39,7 @@ export default async function Blogs_Travel_Experience({
       return "/images/am-thuc.jpg";
     }
     if (slug === "tin-du-lich") {
-      return "/images/bg2.jpg";
+      return "/images/bg2.png";
     }
   }
 
@@ -66,7 +66,7 @@ export default async function Blogs_Travel_Experience({
             <br /> Thế Giới
           </h1>
           <p className="mt-4 text-lg md:text-xl">
-            Hành Trình Mới - Trải Nghiệm Mới <br/> Cùng Euro Travel
+            Hành Trình Mới - Trải Nghiệm Mới <br /> Cùng Euro Travel
           </p>
           <div className="mt-8 px-10 py-3 text-lg font-semibold text-black bg-yellow-400 rounded-sm">
             {getTitle(params.slug)}
@@ -91,7 +91,7 @@ export default async function Blogs_Travel_Experience({
           { title: `${getTitle(params.slug)}`, isCurrentPage: true },
         ]}
       />
-      <Banner/>
+      <Banner />
       <div>
         <h2 className="text-2xl md:text-3xl text-main font-bold pb-1 mt-10 ">
           {getTitle(params.slug)}

@@ -8,6 +8,7 @@ import { Fetch_Travel_Content } from "@/actions/travel";
 import TravelContentComp from "@/app/travel/[slug]/ContentComp";
 
 import ImageComp from "@/app/travel/[slug]/ImageComp";
+import { fetchTourList } from "@/actions/tour";
 
 export default async function TravelPage({
   params,
@@ -21,7 +22,7 @@ export default async function TravelPage({
   let data = Content.length > 0 ? Content[0] : {};
   let imgFeedback = data?.ImageFeedback?.split(",") || [];
   let imgSpecial = data?.PlaceSpecial?.split(",") || [];
-
+  let tour = await fetchTourList({ Id: 0 });
   return (
     <div className="lg:container  ">
       <div className="my-5 mx-2 md:mx-0">
@@ -62,7 +63,7 @@ export default async function TravelPage({
               <SortComponent sort={"1"} />
             </div>
           </div>
-          <TourList />
+          <TourList tour={tour} />
         </div>
       </div>
       <div>

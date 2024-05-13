@@ -8,40 +8,59 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Image from "next/image";
-import StarRating from "@/components/star-ratirng";
-import { fetchBanner } from "@/actions/setting";
 import envConfig from "../../../config";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { ArrowRightIcon } from "@radix-ui/react-icons";
 export default function ImageCustomerSection({ data }: { data: any }) {
   let banner = data.filter((item) => item.KeySelect === "ImageCustomerSection");
   return (
     <section className="lg:container  mt-10">
-      <div className="flex flex-col items-center">
-        <h2 className="md:text-2xl font-bold text-main my-8  uppercase text-center">
-          HÌNH ẢNH THỰC TẾ KHÁCH HÀNG TRẢI NGHIỆM DỊCH VỤ CỦA EUROTRAVEL
-          <Separator />
+      <div className="flex flex-row items-center justify-between  px-2 md:px-0">
+        <h2 className="md:text-2xl text-base font-bold text-main my-4  md:mb-4 md:mt-8   uppercase  flex-1">
+          TRẢI NGHIỆM CỦA KHÁCH HÀNG
         </h2>
-      </div>
-      <div className=" grid grid-cols-2  md:grid-cols-4 gap-2 md:gap-4 px-2 md:px-0">
-        {banner[0]?.BannerList.length > 0 &&
-          banner[0].BannerList.map((item: any, index: any) => (
-            <div className="col-span-1 md:col-span-1" key={index}>
-              <ImageItem
-                content={item.Content}
-                url={item?.UrlSlide ?? ""}
-                image={item.Image.split(",")[0]}
-              />
-            </div>
-          ))}
-      </div>
-      <div className="flex items-center justify-center">
-        <Link href="/gallery">
-          <Button className="bg-main uppercase font-bold hover:shadow-2xl text-white px-4 py-2 rounded-lg mt-4 hover:bg-main-dark transition-all duration-300 ease-in-out">
-            Xem thêm
-          </Button>
+        <Link
+          href="/anh-dich-vu-thuc-te"
+          className="flex flex-row gap-1 items-center text-sm md:text-base underline text-main font-semibold flex-none"
+        >
+          Xem thêm
+          <ArrowRightIcon />
         </Link>
+      </div>
+      <div className=" w-full">
+        <Carousel
+          className="w-full max-w-full group "
+          opts={{
+            align: "center",
+            slidesToScroll: "auto",
+            loop: true,
+          }}
+        >
+          <CarouselContent>
+            {banner[0]?.BannerList.length > 0 &&
+              banner[0].BannerList.map((item: any, index: any) => (
+                <CarouselItem
+                  key={index}
+                  className="  rounded-lg basis-[85%]   lg:basis-1/3 pl-3 "
+                >
+                  <ImageItem
+                    content={item.Content}
+                    url={item?.UrlSlide ?? ""}
+                    image={item.Image.split(",")[0]}
+                  />
+                </CarouselItem>
+              ))}
+          </CarouselContent>
+          <CarouselPrevious className="left-4 bg-main/50 text-white hidden  disabled:hidden md:group-hover:flex" />
+          <CarouselNext className="right-4  bg-main/50  text-white  hidden  disabled:hidden md:group-hover:flex" />
+        </Carousel>
       </div>
     </section>
   );
@@ -55,10 +74,10 @@ const ImageItem = ({ content, image, url }) => {
           <Image
             src={envConfig.NEXT_PUBLIC_CDN + image}
             alt="nature"
-            width={300}
-            height={200}
-            className="w-[300px] h-auto object-cover  
-       group-hover:scale-105  duration-300 ease-in-out overflow-hidden"
+            width={500}
+            height={400}
+            className="w-full h-auto object-cover  
+       duration-300 ease-in-out overflow-hidden"
           />
         </Link>
       </CardHeader>
