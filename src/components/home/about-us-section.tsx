@@ -29,8 +29,8 @@ export default function AboutUsSection({ setting }: { setting: any }) {
               Về chúng tôi
             </h3>
             <h2 className="text-xl md:text-3xl text-two font-bold my-4">
-              EuroTravel - Đối tác du lịch tận tâm, mang đến trải nghiệm Châu Âu
-              đích thực.
+              <span className="text-main"> EuroTravel</span> - Đối tác du lịch
+              tận tâm, mang đến trải nghiệm Châu Âu đích thực.
             </h2>
             <p className="font-medium text-two">
               EuroTravel - Đối tác du lịch tận tâm, mang đến trải nghiệm Châu Âu

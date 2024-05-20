@@ -54,12 +54,28 @@ module.exports = {
         destination: "/gallery",
       },
       {
+        source: "/anh-dich-vu-thuc-te",
+        destination: "/gallery",
+      },
+      {
+        source: "/anh-dich-vu-thuc-te/:slug*",
+        destination: "/gallery/:slug*",
+      },
+      {
+        source: "/goc-ky-niem/:slug*",
+        destination: "/gallery/:slug*",
+      },
+      {
         source: "/cam-nang",
         destination: "/blogs",
       },
       {
         source: "/cam-nang/:slug*",
         destination: "/blogs/:slug*",
+      },
+      {
+        source: "/chi-tiet-bai-viet/:slug*",
+        destination: "/blogs/detail/:slug*",
       },
     ];
   },

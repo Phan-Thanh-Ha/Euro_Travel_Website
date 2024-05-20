@@ -48,10 +48,10 @@ export default function CarouselBanner({ banner = [] }: { banner: any[] }) {
                   // alt="banner"
                   // layout="fill"
                   // objectFit="cover"
-                  width={1903}
-                  height={860}
+                  width={1920}
+                  height={600}
                   quality={100}
-                  className="w-full object-cover h-[250px] md:h-[580px]"
+                  className="md:w-full object-cover  h-full w-auto md:h-[600px]"
                 />
               </Link>
             </CarouselItem>
@@ -138,7 +138,7 @@ export default function CarouselBanner({ banner = [] }: { banner: any[] }) {
           <CarouselNext className="right-4" />
         </Carousel>
       </div> */}
-      <div className="md:absolute md:-bottom-[250px] px-2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 w-full">
+      <div className="md:absolute md:-bottom-[320px] px-2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 w-full">
         <SearchComponent />
       </div>
     </div>

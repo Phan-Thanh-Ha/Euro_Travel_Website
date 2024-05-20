@@ -237,7 +237,7 @@ export default async function TourDetail({
                       </span>
                     </div>
                     <button className="bg-main text-white text-xl py-4 rounded-lg col-span-2 md:col-span-1">
-                      Đặt ngay1
+                      Đặt ngay
                     </button>
                     <button className="bg-blue-default text-white text-xl py-4 rounded-lg col-span-2  md:col-span-1">
                       Chat với nhân viên
@@ -311,29 +311,31 @@ export default async function TourDetail({
               <Price data={tour} />
             </div>
             {tour?.RulesTour && <Policy tour={tour} />}
-            <div>
-              <h2 className="text-xl md:text-2xl font-bold text-main flex items-center gap-2 mb-4">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width={26}
-                  height={26}
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="lucide lucide-images"
-                >
-                  <path d="M18 22H4a2 2 0 0 1-2-2V6" />
-                  <path d="m22 13-1.296-1.296a2.41 2.41 0 0 0-3.408 0L11 18" />
-                  <circle cx={12} cy={8} r={2} />
-                  <rect width={16} height={16} x={6} y={2} rx={2} />
-                </svg>
-                Hình ảnh thực tế
-              </h2>
-              <ImageReviewList images={tour?.TourImageReview || ""} />
-            </div>
+            {tour?.TourImageReview && (
+              <div>
+                <h2 className="text-xl md:text-2xl font-bold text-main flex items-center gap-2 mb-4">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={26}
+                    height={26}
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="lucide lucide-images"
+                  >
+                    <path d="M18 22H4a2 2 0 0 1-2-2V6" />
+                    <path d="m22 13-1.296-1.296a2.41 2.41 0 0 0-3.408 0L11 18" />
+                    <circle cx={12} cy={8} r={2} />
+                    <rect width={16} height={16} x={6} y={2} rx={2} />
+                  </svg>
+                  Hình ảnh thực tế
+                </h2>
+                <ImageReviewList images={tour?.TourImageReview || ""} />
+              </div>
+            )}
           </div>
         </div>
       </div>

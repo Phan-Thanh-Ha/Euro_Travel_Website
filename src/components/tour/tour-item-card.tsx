@@ -1,7 +1,3 @@
-// ================================================
-// Group Tour Detail
-// ================================================
-
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -22,8 +18,7 @@ type TourItemProps = {
   Slug: string;
   Price: number;
   Id: number;
-  CodeTour: string;
-  QuantityCountry: number;
+  Color: string;
 };
 
 export default function TourItem({
@@ -49,7 +44,7 @@ export default function TourItem({
   };
 
   return (
-    <Card className="rounded-lg shadow-sm hover:shadow-2xl duration-300 group h-full flex flex-col">
+    <Card className="rounded-lg relative shadow-sm hover:shadow-2xl duration-300 group h-full flex flex-col">
       <Link href={"/tour" + data?.Slug ?? ""}>
         <CardHeader className="p-0 overflow-hidden rounded-t-lg cursor-pointer ">
           <Image
@@ -58,16 +53,27 @@ export default function TourItem({
             width={1200}
             height={800}
             quality={100}
-            className="w-auto h-[235px] md:h-[250px] object-cover  
-            group-hover:scale-105  duration-300 ease-in-out overflow-hidden"
+            className="w-auto h-[200px] md:h-[250px] object-cover  
+           group-hover:scale-105  duration-300 ease-in-out overflow-hidden"
           />
         </CardHeader>
       </Link>
+      <div
+        className=" pointer-events-none p-2 rounded-lg lg:hidden absolute bottom-0 inset-x-0 overlay bg-gradient-to-t from-sky-900 via-sky-700/70
+                 to-transparent h-[80px] md:h-[200px]"
+      >
+        <div className="flex flex-col justify-end h-full md:gap-2">
+          <div className="flex flex-row text-gray-300 text-sm justify-between gap-2"></div>
+          <h2 className="text-white line-clamp-2 text-xs text-ellipsis ">
+            {data.NameTour}
+          </h2>
+        </div>
+      </div>
 
-      <CardContent className=" p-2 py-4 md:p-4  relative flex-grow">
+      <CardContent className="  hidden lg:block p-2 py-4 md:p-4  relative flex-grow">
         <span
-          className="absolute -top-3 left-4 rounded-sm bg-main px-2 py-1 text-xs 
-          font-medium text-white z-10"
+          className="absolute -top-3 left-4  bg-main/95 backdrop-blur-md px-2 py-1 text-xs 
+         font-medium text-white z-10"
         >
           {data.Timeline}
         </span>
@@ -76,12 +82,7 @@ export default function TourItem({
             <Link href={"/tour" + data?.Slug ?? ""}>{data.NameTour}</Link>
           </CardTitle>
           <div className="flex flex-col gap-1.5 flex-1   ">
-            <div
-              className={cn(
-                "flex items-start gap-1 text-sm md:text-base",
-                className
-              )}
-            >
+            <div className={cn("flex items-start gap-1 text-sm ", className)}>
               <span className="flex items-center flex-row  gap-1 min-w-fit font-bold">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -100,14 +101,17 @@ export default function TourItem({
                 </svg>{" "}
                 Điểm đến:{" "}
               </span>
-              <span>{to}</span>
+              <span
+                className={cn(
+                  "",
+                  data?.Color ? `text-[${data?.Color?.toLowerCase()}]` : " "
+                )}
+                style={{ color: data?.Color?.toLowerCase() }}
+              >
+                {to}
+              </span>
             </div>
-            <div
-              className={cn(
-                "flex items-start gap-1 text-sm md:text-base",
-                className
-              )}
-            >
+            <div className={cn("flex items-start gap-1 text-sm ", className)}>
               <span className="font-bold items-center flex flex-row gap-1 flex-none">
                 {" "}
                 <svg
@@ -130,12 +134,7 @@ export default function TourItem({
               </span>
               <span>{from}</span>
             </div>
-            <div
-              className={cn(
-                "flex items-start gap-1 text-sm md:text-base",
-                className
-              )}
-            >
+            <div className={cn("flex items-start gap-1 text-sm ", className)}>
               <span className=" flex items-center gap-1 font-bold">
                 {" "}
                 <svg
@@ -155,7 +154,7 @@ export default function TourItem({
               </span>
               <span>{data.Flight}</span>
             </div>
-            <div className=" flex flex-row flex-wrap gap-1 text-sm md:text-base my-1">
+            <div className=" flex flex-row flex-wrap gap-1 text-sm  my-1">
               <span className=" flex flex-row gap-1 flex-none font-bold">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -186,14 +185,12 @@ export default function TourItem({
               </span>
             </div>
           </div>
-          <div className="flex justify-between  gap-4 flex-none">
-            <DiaLogRegisterTour
-              data={{ NameTour: data.NameTour, Slug: data.Slug }}
-            />
+          <div className="flex justify-between  gap-2 flex-none">
+            <DiaLogRegisterTour tourName={data.NameTour} tourId={data.Id} />
             <Button
               variant="outline"
               size={"lg"}
-              className="w-full px-4   font-bold text-base"
+              className="w-full px-2   font-bold text-base"
             >
               <Link href={"/tour" + data?.Slug ?? ""}> Xem chi tiết</Link>
             </Button>

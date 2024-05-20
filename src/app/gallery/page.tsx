@@ -29,7 +29,6 @@ export default function Gallery() {
     });
     setGalleryImages(res);
   };
-  console.log(galleryImages);
   return (
     <div className="container">
       <div className="w-full px-4">

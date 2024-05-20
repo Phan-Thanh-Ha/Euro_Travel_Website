@@ -18,7 +18,7 @@ export default function MotionLayout({
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ amount: 0.1 }}
+      viewport={{ once: true, amount: 0.1 }}
       variants={variants}
     >
       {children}

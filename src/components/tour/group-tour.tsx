@@ -18,6 +18,38 @@ export default async function GroupTour() {
     Slug: "",
   });
 
+  const RenderContentPc: React.FC<any> = ({ item }) => {
+    return item.Tours.map((tour: any, index2: any) => {
+      return (
+        <CarouselItem
+          key={index2}
+          className=" md:block hidden rounded-lg  pl-3 lg:basis-1/4 basis-[85%] "
+        >
+          <TourItem key={index2} data={tour} />
+        </CarouselItem>
+      );
+    });
+  };
+
+  const RenderContentMobile: React.FC<any> = ({ item }) => {
+    let newArrTour = Array(Math.ceil(item.Tours.length / 2))
+      .fill([])
+      .map((chunk, index) => {
+        return item.Tours.slice(index * 2, (index + 1) * 2);
+      });
+    return newArrTour.map((tour: any, index2: any) => {
+      return (
+        <CarouselItem key={index2} className="  rounded-lg  md:hidden">
+          <div className="grid col-2">
+            {tour.map((t: any, i: any) => {
+              return <TourItem key={i} data={t} />;
+            })}
+          </div>
+        </CarouselItem>
+      );
+    });
+  };
+
   return toursGroup.map((item: any, index: any) => {
     return (
       <MotionLayout key={index}>
@@ -41,8 +73,13 @@ export default async function GroupTour() {
                 <Separator className="mb-2" />
               </h2>
             </div>
+            <div className="grid grid-cols-2 md:hidden gap-2 mx-2">
+              {item.Tours.map((tour: any, index2: any) => {
+                return <TourItem key={index2} data={tour} />;
+              })}
+            </div>
             <Carousel
-              className="w-full max-w-full group "
+              className="w-full max-w-full group hidden md:block"
               opts={{
                 align: "center",
                 slidesToScroll: "auto",
@@ -50,25 +87,14 @@ export default async function GroupTour() {
               }}
             >
               <CarouselContent>
-                {item.Tours.map((tour: any, index2: any) => {
-                  return (
-                    <CarouselItem
-                      key={index}
-                      className="  rounded-lg  pl-3  lg:basis-1/3 basis-[85%] "
-                    >
-                      <TourItem key={index2} data={tour} />
-                    </CarouselItem>
-                  );
-                })}
+                <>
+                  <RenderContentPc item={item} />
+                  <RenderContentMobile item={item} />
+                </>
               </CarouselContent>
               <CarouselPrevious className="left-4 bg-main/50 text-white hidden  disabled:hidden md:group-hover:flex" />
               <CarouselNext className="right-4  bg-main/50  text-white  hidden  disabled:hidden md:group-hover:flex" />
             </Carousel>
-            {/* <div className=" grid md:grid-cols-3  gap-4 px-2 md:px-0">
-            {item.Tours.map((tour: any, index2: any) => {
-              return <TourItem key={index2} data={tour} />;
-            })}
-          </div> */}
           </div>
         </div>
       </MotionLayout>

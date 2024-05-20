@@ -17,6 +17,10 @@ import { useRouter } from "next/navigation";
 import { Combobox } from "@/components/combobox";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Slider } from "@/components/ui/slider";
+import { fetchFilterTour } from "@/actions/tour";
+import { fetchCountry } from "@/actions/setting";
+import { format } from "date-fns";
+import SelectCountry from "@/components/select-country";
 
 const formSchema = z.object({
   start: z.string().optional(),
@@ -31,56 +35,24 @@ interface FilterForm extends React.ComponentProps<"form"> {
   setIsLogin: (isLogin: boolean) => void;
 }
 
-export type LoginBodyType = z.TypeOf<typeof formSchema>;
+export type FilterType = z.TypeOf<typeof formSchema>;
 
-export default function FilterTour({
-  className,
-  setOpen,
-  setIsLogin,
-}: FilterForm) {
+export default function FilterTour({ className, setTour }: FilterForm) {
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();
+  const [country, setCountry] = React.useState([]);
+  React.useEffect(() => {
+    (async () => {
+      let res = await fetchCountry({ Id: 0 });
+      setCountry(res);
+    })();
+  }, []);
   const startPlaceOptions = [
-    { value: "Hà Nội", label: "Hà Nội" },
-    { value: "Hồ Chí Minh", label: "Hồ Chí Minh" },
+    { value: 1, label: "Hà Nội" },
+    { value: 2, label: "Hồ Chí Minh" },
   ];
 
-  const endPlaceOptions = [
-    { value: "Pháp", label: "Pháp" },
-    { value: "Thụy Sĩ", label: "Thụy Sĩ" },
-    { value: "Đức", label: "Đức" },
-    { value: "Ý", label: "Ý" },
-    { value: "Hà Lan", label: "Hà Lan" },
-    { value: "Bỉ", label: "Bỉ" },
-    { value: "Áo", label: "Áo" },
-    { value: "Hungary", label: "Hungary" },
-    { value: "Séc", label: "Séc" },
-    { value: "Hy Lạp", label: "Hy Lạp" },
-    { value: "Bồ Đào Nha", label: "Bồ Đào Nha" },
-    { value: "Tây Ban Nha", label: "Tây Ban Nha" },
-    { value: "Đan Mạch", label: "Đan Mạch" },
-    { value: "Thụy Điển", label: "Thụy Điển" },
-    { value: "Na Uy", label: "Na Uy" },
-    { value: "Phần Lan", label: "Phần Lan" },
-    { value: "Mỹ", label: "Mỹ" },
-    { value: "Canada", label: "Canada" },
-    { value: "Mexico", label: "Mexico" },
-    { value: "Brazil", label: "Brazil" },
-    { value: "Cuba", label: "Cuba" },
-    { value: "Úc", label: "Úc" },
-    { value: "New Zealand", label: "New Zealand" },
-    { value: "Nhật Bản", label: "Nhật Bản" },
-    { value: "Hàn Quốc", label: "Hàn Quốc" },
-    { value: "Singapore", label: "Singapore" },
-    { value: "Trung Quốc", label: "Trung Quốc" },
-    { value: "Dubai", label: "Dubai" },
-    { value: "Ấn Độ", label: "Ấn Độ" },
-    { value: "Ai Cập", label: "Ai Cập" },
-    { value: "Nam Phi", label: "Nam Phi" },
-    { value: "Morocco", label: "Morocco" },
-  ];
-
-  const form = useForm<LoginBodyType>({
+  const form = useForm<FilterType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       start: "",
@@ -89,21 +61,47 @@ export default function FilterTour({
       price: [1, 200],
     },
   });
+  const debounce = (func: Function, delay: number) => {
+    let timer: ReturnType<typeof setTimeout>;
+    return function (this: any, ...args: any[]) {
+      const context = this;
+      clearTimeout(timer);
+      timer = setTimeout(() => func.apply(context, args), delay);
+    };
+  };
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  const handleFormChange = debounce(async (values: FilterType) => {
     try {
       setLoading(true);
+      let start = startPlaceOptions.find((x) => x.label === values.start);
+      let end = country.find((x: any) => x.Name === values.end);
+      const response = await fetchFilterTour({
+        StartPlace: start?.value,
+        EndPlace: end?.Id,
+        Day: "",
+        PriceFrom: 0,
+        PriceTo: 200000000,
+        Date: format(values.date, "MM"),
+      });
+      setTour(response);
     } catch (error) {
       console.error(error);
     } finally {
       setLoading(false);
     }
-  }
+  }, 1000);
+
+  React.useEffect(() => {
+    const subscription = form.watch(handleFormChange);
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, [form.watch, startPlaceOptions, country]);
 
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(onSubmit)}
+        // onSubmit={form.handleSubmit(onSubmit)}
         className={cn("flex flex-col  !w-full h-full  gap-8", className)}
         noValidate
       >
@@ -123,7 +121,7 @@ export default function FilterTour({
                 options={startPlaceOptions}
                 title=""
                 placeholder="Chọn nơi khởi hành"
-                textSize="text-base"
+                textSize="text-lg"
               />
             </FormItem>
           )}
@@ -138,13 +136,12 @@ export default function FilterTour({
               </FormLabel>
               <FormControl>{/* <SelectComp value {...field} /> */}</FormControl>
               <FormMessage />
-              <Combobox
+              <SelectCountry
                 value={field.value}
-                setValue={field.onChange}
-                options={endPlaceOptions}
-                title=""
+                onChange={field.onChange}
+                // options={endPlaceOptions}
                 placeholder="Chọn điểm đến"
-                textSize="text-base"
+                className="textlg"
               />
             </FormItem>
           )}

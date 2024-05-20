@@ -23,7 +23,7 @@ export default function ImageCustomerSection({ data }: { data: any }) {
   return (
     <section className="lg:container  mt-10">
       <div className="flex flex-row items-center justify-between  px-2 md:px-0">
-        <h2 className="md:text-2xl text-base font-bold text-main my-4  md:mb-4 md:mt-8   uppercase  flex-1">
+        <h2 className="md:text-2xl text-base font-bold text-main my-4     uppercase  flex-1">
           TRẢI NGHIỆM CỦA KHÁCH HÀNG
         </h2>
         <Link

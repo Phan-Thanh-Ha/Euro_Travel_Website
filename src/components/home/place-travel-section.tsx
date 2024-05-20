@@ -18,7 +18,7 @@ export default function PlaceTravelSection({ data }: { data: any }) {
   return (
     <section className="lg:container  mt-10 px-2 md:px-0">
       <div className="flex flex-row items-center justify-between  px-2 md:px-0">
-        <h2 className="md:text-2xl text-base font-bold text-main my-4 md:mb-4 md:mt-8  uppercase  flex-1">
+        <h2 className="md:text-2xl text-base font-bold text-main my-4   uppercase  flex-1">
           ĐIỂM DU LỊCH YÊU THÍCH
         </h2>
         <Link

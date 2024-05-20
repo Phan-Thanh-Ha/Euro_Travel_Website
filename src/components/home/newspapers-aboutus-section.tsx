@@ -20,7 +20,7 @@ export default function NewspaperAboutUsSection({ data }: { data: any }) {
     <section className="lg:container  mt-10">
       <div className="flex flex-col items-center">
         <h2 className="text-lg md:text-2xl font-bold text-main my-8  uppercase">
-          Báo chí nói gì về EUROTRAVEL
+          Truyền thông về EUROTRAVEL
           <Separator />
         </h2>
       </div>

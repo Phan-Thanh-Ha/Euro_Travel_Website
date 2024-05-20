@@ -109,3 +109,34 @@ export const loginCustomer = async (data: LoginCustomerData) => {
     return await fetchMethod(data, "CMS_spCustomer_Login");
   } catch (error) {}
 }
+
+export interface CheckEmailData {
+  Email : string;
+}
+
+export const checkEmailCustomer = async (data: CheckEmailData) => {
+  try {
+    return await fetchMethod(data, "CMS_spForgotPassword");
+  } catch (error) {}
+}
+
+export interface CheckOTPEmailData {
+  Email : string;
+  OTP : string;
+}
+
+export const checkOTPEmailCustDataomer = async (data: CheckOTPEmailData) => {
+  try {
+    return await fetchMethod(data, "CMS_spForgotPassword_OTP_Check");
+  } catch (error) {}
+}
+export interface ForgotPasswordData {
+  Email : string;
+  Password : string;
+}
+
+export const forgotPasswordCustDataomer = async (data: ForgotPasswordData) => {
+  try {
+    return await fetchMethod(data, "CMS_spChangePassword");
+  } catch (error) {}
+}

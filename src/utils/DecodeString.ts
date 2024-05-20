@@ -26,7 +26,6 @@ function b64_to_utf8(str: string) {
 }
 
 export const EncodeObject = (object: any): string => {
-  console.log(object)
   if (object) {
       const jsonString = JSON.stringify(object);
       const encodedString = utf8_to_b64(jsonString);

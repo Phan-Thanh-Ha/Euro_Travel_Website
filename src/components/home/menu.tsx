@@ -18,7 +18,9 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
 import Image from "next/image";
+import { getUserLogin } from "@/utils/GetUserLogin";
 export function Menu({ data = [], setting = [] }: { data: any; setting: any }) {
+
   let menuTour = [35, 37, 38, 39];
   const RenderMenu = ({ className = "" }) => {
     return data.map((item: any, index: any) => {
@@ -136,7 +138,7 @@ export function Menu({ data = [], setting = [] }: { data: any; setting: any }) {
             </NavigationMenu>
           </div>
           <div className="flex items-center">
-            <Link href={"/dashboard/customer"}>
+            <a href={"/dashboard/customer"}>
               <button className="flex items-center pr-4">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -154,7 +156,7 @@ export function Menu({ data = [], setting = [] }: { data: any; setting: any }) {
                   <circle cx={12} cy={7} r={4} />
                 </svg>
               </button>
-            </Link>
+            </a>
           </div>
         </div>
       </div>

@@ -19,6 +19,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { getUserLogin } from "@/utils/GetUserLogin";
 export default function MenuMobile({
   data = [],
   setting = {},
@@ -112,6 +113,13 @@ export default function MenuMobile({
                 className="w-full h-full text-two p-4 "
               >
                 <RenderMenu />
+                <div className="flex items-center py-4 border-b">
+                  <a href={"/dashboard"}>
+                    <button className="flex items-center pr-4">
+                      <span className="font-bold">Khách hàng</span>
+                    </button>
+                  </a>
+                </div>
               </Accordion>
             </ScrollArea>
           </div>

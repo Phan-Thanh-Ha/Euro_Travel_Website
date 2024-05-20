@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 
-function RootLayout({
+function AuthLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -8,9 +8,9 @@ function RootLayout({
   return (
     <html lang="en">
       <body>
-          {children}
+        {children}
       </body>
     </html>
   );
 }
-export default dynamic(() => Promise.resolve(RootLayout), { ssr: false })
+export default dynamic(() => Promise.resolve(AuthLayout), { ssr: false })

@@ -10,12 +10,6 @@ interface CardProps {
 const BlogCard: React.FC<CardProps> = ({ item }) => {
   return (
     <div className="rounded-lg shadow-sm hover:shadow-2xl duration-300 group h-full flex flex-col relative">
-      {/* Badge "Hot" */}
-      {item?.IsHot && (
-        <span className="absolute top-1 left-1 z-10 bg-red-500 text-white px-2 py-1 rounded-tr-md rounded-bl-md">
-          Hot
-        </span>
-      )}
       <div className="p-0 overflow-hidden rounded-t-lg cursor-pointer">
         <Link href={"/chi-tiet-bai-viet/" + item?.Url ?? ""}>
           <Image

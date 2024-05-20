@@ -8,6 +8,7 @@ import { GlobalProvider } from "@/store";
 import FloatingButton from "@/components/float-button/float-button";
 import NextTopLoader from "nextjs-toploader";
 import Provider, { NextAuthProvider } from "@/components/Provider";
+import { Toaster } from "@/components/ui/toaster";
 
 const sans = Bai_Jamjuree({ weight: "500", subsets: ["vietnamese"] });
 export const viewport: Viewport = {
@@ -60,6 +61,7 @@ export default function RootLayout({
             <Header />
             {children}
             <FloatingButton />
+            <Toaster />
             <Footer />
           </GlobalProvider>
         </NextAuthProvider>

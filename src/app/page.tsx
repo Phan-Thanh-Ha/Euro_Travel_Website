@@ -15,9 +15,10 @@ import Link from "next/link";
 import BannerBlogs from "@/components/blogs/banner-blog";
 import ModalAds from "@/components/modal-ads";
 import BackgroundLayout from "@/components/background-layout";
-import { motion } from "framer-motion";
 import MotionLayout from "@/components/motion-layout";
 import SnowfallComp from "@/components/snowfall";
+import TravelNewsList from "@/components/home/travel-news";
+
 export default async function Home() {
   const banner = await fetchBanner({
     KeySelect: "",
@@ -34,32 +35,40 @@ export default async function Home() {
     <main className="">
       <SnowfallComp />
       <CarouselBanner banner={banner} />
-      <div className="relative md:mt-[150px]">
-        <div className="hidden 2xl:block fixed top-20 left-0  z-10">
+      <div className="relative md:mt-[250px]">
+        <div className="hidden  fixed 2xl:flex items-center inset-y-0 left-0  z-10">
           <Link href={banners[0]?.UrlSlide}>
             <Image
               src={envConfig.NEXT_PUBLIC_CDN + banners[0]?.Image?.split(",")[0]}
-              width={400}
-              height={962}
+              width={175}
+              height={400}
               alt="banner"
-              className="w-44"
+              quality={100}
+              className="w-[175px] h-[400px]"
             />
           </Link>
         </div>
-        <div className=" hidden 2xl:block fixed top-20 right-0 z-10 ">
+        <div className=" hidden  fixed 2xl:flex items-center inset-y-0  right-0 z-10 ">
           <Link href={banners[1]?.UrlSlide}>
             <Image
               src={envConfig.NEXT_PUBLIC_CDN + banners[1]?.Image?.split(",")[0]}
-              width={400}
-              height={962}
+              width={175}
+              height={400}
               alt="banner"
-              className="w-44"
+              quality={100}
+              className="w-[175px] h-[400px]"
             />
           </Link>
         </div>
 
         <BackgroundLayout>
           <PlaceTravelSection data={banner} />
+        </BackgroundLayout>
+        <BackgroundLayout>
+          {" "}
+          <MotionLayout>
+            <BannerBlogs />
+          </MotionLayout>
         </BackgroundLayout>
         <GroupTour />
         <BackgroundLayout>
@@ -84,14 +93,13 @@ export default async function Home() {
         </BackgroundLayout>
 
         {/* <DiscoverWith data={banner} /> */}
-        <BackgroundLayout>
-          {" "}
+
+        {/* <BackgroundLayout>
           <MotionLayout>
-            <BannerBlogs />
+            <TravelNewsList />
           </MotionLayout>
-        </BackgroundLayout>
+        </BackgroundLayout> */}
         <PartnerSection data={banner} />
-        <ModalAds banner={banner} />
       </div>
     </main>
   );

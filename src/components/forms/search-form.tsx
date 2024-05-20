@@ -2,8 +2,6 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import Link from "next/link";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -13,19 +11,15 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { useRouter } from "next/navigation";
-import { register } from "@/actions/user";
-import envConfig from "../../../config";
-import useGlobalState from "@/hooks/useGlobalState";
 import { Combobox } from "@/components/combobox";
-import { SelectComp } from "@/components/select-comp";
 import { SelectDate } from "@/components/select-date";
 import SelectCountry from "@/components/select-country";
 import { fetchFilterTour } from "@/actions/tour";
 import { fetchCountry } from "@/actions/setting";
+import { format } from "date-fns";
 
 const formSchema = z.object({
   start: z.string().min(1, {
@@ -40,15 +34,11 @@ const formSchema = z.object({
 });
 
 //   .strict();
-interface SearchFormProps extends React.ComponentProps<"form"> {
-  setOpen: (open: boolean) => void;
-  setIsLogin: (isLogin: boolean) => void;
-}
+interface SearchFormProps extends React.ComponentProps<"form"> {}
 
 export type LoginBodyType = z.TypeOf<typeof formSchema>;
 
 export default function SearchFrom({ className }: SearchFormProps) {
-  const [globalState, dispatch] = useGlobalState();
   const [loading, setLoading] = React.useState(false);
   const [country, setCountry] = React.useState([]);
   React.useEffect(() => {
@@ -76,15 +66,21 @@ export default function SearchFrom({ className }: SearchFormProps) {
     try {
       setLoading(true);
       let start = startPlaceOptions.find((x) => x.label === values.start);
-      let end = country.find((x) => x.Name === values.end);
+      let end = country.find((x: any) => x.Name === values.end);
       const response = await fetchFilterTour({
         StartPlace: start?.value,
         EndPlace: end?.Id,
         Day: 0,
         PriceFrom: 0,
         PriceTo: 200000000,
-        // Date: values.date,
+        Date: format(values.date, "MM"),
       });
+      router.push(
+        `/search?s=${start?.value || 0}&e=${end?.Id}&d=${format(
+          values.date,
+          "MM"
+        )}`
+      );
       console.log(response);
     } catch (error) {
       console.error(error);
@@ -92,6 +88,7 @@ export default function SearchFrom({ className }: SearchFormProps) {
       setLoading(false);
     }
   }
+
   return (
     <Form {...form}>
       <form

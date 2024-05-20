@@ -5,26 +5,20 @@ import { usePathname, useRouter } from "next/navigation";
 import { Breadcrum } from "@/components/home/bread-crumb";
 import Image from "next/image";
 import { DecodeObject } from "@/utils/DecodeString";
+import { getUserLogin } from "@/utils/GetUserLogin";
 
 const SidebarMobile = () => {
   const pathname = usePathname();
   const { push } = useRouter();
   const [user, setUser] = useState<any>({});
   useEffect(() => {
-    getUserLogin();
+    setUser(getUserLogin());
   }, []);
-  const getUserLogin = () => {
-    try {
-      const storage = window.localStorage.getItem("userLogin");
-      const data = DecodeObject(storage || "");
-      setUser(data || {});
-      console.log(data);
-    } catch (error) { }
-  };
+
   const handleSignOut = () => {
     window.localStorage.removeItem("userLogin");
     push("/login");
-  };
+  }
 
   return (
     <aside className="bg-white w-64 h-full shadow-md rounded-r-lg">
@@ -71,58 +65,53 @@ const SidebarMobile = () => {
             <div className="my-8">
               <ul className="mb-6 flex flex-col gap-1.5">
                 {/* Menu Item Profile */}
-                <li>
-                  <Link
-                    href="/dashboard/profile"
-                    className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out 
-                  ${pathname.includes("profile") && "bg-slate-300"}`}
-                  >
-                    Thông tin khách hàng
-                  </Link>
-                </li>
-                {/* Menu Item Profile */}
-                {/* Menu Item Profile */}
-                <li>
-                  <Link
-                    href="/dashboard/customer"
-                    className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out 
+                <Link
+                  href="/dashboard/customer"
+                  className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out 
                   ${pathname.includes("customer") && "bg-slate-300"}`}
-                  >
+                >
+                  <li>
                     Thông tin khách hàng
-                  </Link>
-                </li>
+                  </li>
+                </Link>
                 {/* Menu Item Profile */}
                 {/* Menu Item contract */}
-                <li>
-                  <Link
-                    href="/dashboard/contract"
-                    className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out 
+
+                <Link
+                  href="/dashboard/contract"
+                  className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out 
                   ${pathname.includes("contract") && "bg-slate-300"}`}
-                  >
+                >
+                  <li>
                     Hợp đồng của tôi
-                  </Link>
-                </li>
+                  </li>
+                </Link>
+
                 {/* Menu Item contract */}
                 {/* Menu Item account */}
-                <li>
-                  <Link
-                    href="/dashboard/account"
-                    className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out 
+
+                <Link
+                  href="/dashboard/account"
+                  className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out 
                   ${pathname.includes("account") && "bg-slate-300"}`}
-                  >
+                >
+                  <li>
                     Tài khoản mật khẩu
-                  </Link>
-                </li>
+                  </li>
+                </Link>
+
                 {/* Menu Item account */}
                 {/* Menu Item đăng xuất */}
-                <li>
-                  <button
-                    onClick={handleSignOut}
-                    className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out`}
-                  >
+
+                <button
+                  onClick={handleSignOut}
+                  className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out`}
+                >
+                  <li>
                     Đăng xuất
-                  </button>
-                </li>
+                  </li>
+                </button>
+
                 {/* Menu Item đăng xuất */}
               </ul>
             </div>

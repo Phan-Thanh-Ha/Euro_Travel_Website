@@ -9,7 +9,7 @@ interface FetchBlogData {
 export const fetchHandBook = async (data: FetchBlogData) => {
   try {
     return await fetchMethod(data, "CMS_spBlogs_Handbook_List");
-  } catch (error) {}
+  } catch (error) { }
 };
 // #endregion
 
@@ -21,7 +21,7 @@ interface FetchNewPage {
 export const fetchNewPage = async (data: FetchNewPage) => {
   try {
     return await fetchMethod(data, "CMS_spBlogs_NewPage_List");
-  } catch (error) {}
+  } catch (error) { }
 };
 // #endregion
 
@@ -33,6 +33,32 @@ interface FetchContent {
 export const fetchContent = async (data: FetchContent) => {
   try {
     return await fetchMethod(data, "CMS_spBlogs_Content");
-  } catch (error) {}
+  } catch (error) { }
 };
 // #endregion
+
+
+// #region lấy dữ liệu địa danh nỗi bật theo danh mục
+interface FetchPlaceHot {
+  Url: string;
+}
+export const FetchPlaceHot = async (data: FetchPlaceHot) => {
+  try {
+    return await fetchMethod(data, "CMS_spSiteManagement_List");
+  } catch (error) { }
+};
+// #endregion
+
+
+// #region lấy dữ liệu tin tức du lịch theo danh mục
+interface FetchNews {
+  Url: string;
+}
+export const FetchNews = async (data: FetchNews) => {
+  try {
+    return await fetchMethod(data, "CMS_spBlogs_Handbook_List_By_Tour");
+  } catch (error) { }
+};
+
+
+

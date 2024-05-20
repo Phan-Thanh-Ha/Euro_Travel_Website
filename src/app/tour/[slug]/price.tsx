@@ -8,6 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import ListTourHot from "@/components/tour/list-tour-hot";
 
 export default function Price({ data }: { data: any }) {
   return (
@@ -83,6 +84,8 @@ export default function Price({ data }: { data: any }) {
           </TableBody>
         </Table>
       </div>
+
+      <ListTourHot title="Tour gợi ý" />
       <div
         dangerouslySetInnerHTML={{ __html: data?.DescriptionPrice || "" }}
         className="mt-5"
