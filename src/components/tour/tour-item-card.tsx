@@ -24,14 +24,18 @@ type TourItemProps = {
 export default function TourItem({
   data,
   className,
+  quantityDate,
 }: {
   data: TourItemProps;
   className?: string;
+  quantityDate?: number;
 }) {
+  const defaultQuantity = 5;
+  const quantity = quantityDate !== undefined ? quantityDate : defaultQuantity;
   const to = data.Destination.replace(/;\s/g, " - ").replace(/ - $/, "");
   const from = data.DeparturePoint.replace(/;\s/g, " / ").replace(/ \/ $/, "");
   const RenderDate = () => {
-    return data.DateStart.split(",").map((item) => {
+    return data.DateStart.split(",").slice(0, quantity).map((item) => {
       return (
         <span
           key={item}
@@ -42,7 +46,6 @@ export default function TourItem({
       );
     });
   };
-
   return (
     <Card className="rounded-lg relative shadow-sm hover:shadow-2xl duration-300 group h-full flex flex-col">
       <Link href={"/tour" + data?.Slug ?? ""}>
@@ -53,8 +56,8 @@ export default function TourItem({
             width={1200}
             height={800}
             quality={100}
-            className="w-auto h-[200px] md:h-[250px] object-cover  
-           group-hover:scale-105  duration-300 ease-in-out overflow-hidden"
+            className="w-auto h-[200px] md:h-[280px] object-cover  
+           md:group-hover:scale-105  duration-300 ease-in-out overflow-hidden rounded-lg"
           />
         </CardHeader>
       </Link>
@@ -172,8 +175,15 @@ export default function TourItem({
                   <polyline points="12 6 12 12 16 14" />
                 </svg>
                 Ngày khởi hành:{" "}
-              </span>
+              </span> <br />
               <RenderDate />
+              {data.DateStart.split(",").length > quantity ? (
+                <span
+                  className="text-xs font-semibold bg-sky-100 rounded-full px-5 py-1 text-blue-default text-center"
+                >
+                  {`...`}
+                </span>
+              ) : null}
             </div>
             <div className="my-2 flex-1 flex items-end">
               <span className="text-sm md:text-base font-semibold mr-3 mb-1">

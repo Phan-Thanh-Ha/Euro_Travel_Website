@@ -8,6 +8,7 @@ interface CardProps {
 }
 
 const BlogCardItem: React.FC<CardProps> = ({ item }) => {
+  /* console.log(item); */
   return (
     <div className="relative">
       <Link href={"/chi-tiet-bai-viet/" + item?.Url ?? ""}>
@@ -39,12 +40,12 @@ const BlogCardItem: React.FC<CardProps> = ({ item }) => {
                  to-transparent h-[100px] md:h-[120px]"
       >
         <div className="flex flex-col justify-end h-full md:gap-2">
-          {/* <div className="flex flex-row text-gray-300 text-sm justify-between gap-2">
+          <div className="flex flex-row text-gray-100 text-sm justify-between gap-2">
             <span>
               {format(new Date(item?.CreateOn), "HH:mm dd/MM/yyyy")}
             </span>
             <span>{item?.StaffName}</span>
-          </div> */}
+          </div>
           <h2 className="text-white line-clamp-2 text-lg md:text-xl text-ellipsis">
             {item?.Title}
           </h2>

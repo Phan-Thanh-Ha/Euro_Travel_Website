@@ -43,6 +43,7 @@ export default function ModalAds({ banner }: { banner: any }) {
             quality={100}
             className="w-full h-auto rounded-lg"
             alt="Ads image"
+            priority
           />
           // </Link>
         )}

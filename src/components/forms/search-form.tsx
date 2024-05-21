@@ -70,14 +70,14 @@ export default function SearchFrom({ className }: SearchFormProps) {
       const response = await fetchFilterTour({
         StartPlace: start?.value,
         EndPlace: end?.Id,
-        Day: 0,
+        Day: "",
         PriceFrom: 0,
         PriceTo: 200000000,
-        Date: format(values.date, "MM"),
+        Date: format(new Date(), "MM"),
       });
       router.push(
         `/search?s=${start?.value || 0}&e=${end?.Id}&d=${format(
-          values.date,
+          new Date(),
           "MM"
         )}`
       );

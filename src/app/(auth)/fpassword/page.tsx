@@ -1,12 +1,11 @@
 "use client"
-
+import { fetchSetting } from "@/actions/setting";
 import EmaliInputForm from "@/components/forms/email-input-form";
 import ForgotPasswordForm from "@/components/forms/new-password-form";
 import { OTPInputForm } from "@/components/forms/otp-input-form";
 import Image from "next/image";
-import { useState } from "react";
-import { useParams } from 'next/navigation'
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import envConfig from "../../../../config";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -14,6 +13,17 @@ export default function ForgotPassword() {
   const [emailSubmit, setEmailSubmit] = useState(false);
   const [otpSubmit, setOtpSubmit] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
+  const [bgImage, setBgImage] = useState("");
+  const getImage = async () => {
+    const result = await fetchSetting({
+      KeySetting: "BgFooter",
+    });
+    setBgImage(result[0]?.DataSetting?.split(",")[0] || "");
+  }
+
+  useEffect(() => {
+    getImage();
+  }, [])
   const handleSteps2 = () => {
     if (emailSubmit) {
       setCurrentStep(2);
@@ -29,19 +39,19 @@ export default function ForgotPassword() {
     setOtp("");
   }
   return (
-    <div className="relative overflow-hidden bg-white md:bg-current h-screen w-full py-2">
+    <div className="relative overflow-hidden h-[100vh] p-4">
       <div className="absolute inset-0 z-0 opacity-70">
         <Image
-          src="/images/bg3.jpg"
+          src={`${envConfig.NEXT_PUBLIC_CDN + bgImage}`}
           alt="bg"
-          layout="fill"
-          objectFit="cover"
+          width={1000}
+          height={1000}
           quality={100}
-          className="w-full h-full hidden md:block"
+          className="w-full h-full object-cover fill-current opacity-40 md:opacity-100 "
         />
       </div>
       <div className="absolute inset-0 z-10 flex justify-center items-center rounded-md py-4">
-        <div className="flex w-[600px] flex-col justify-center px-6 py-6 lg:px-4 bg-white rounded-md">
+        <div className="flex w-[600px] flex-col justify-center px-6 py-6 lg:px-4 bg-white/90 md:bg-white rounded-md mx-4">
           <div className="flex justify-center items-center">
             <a href={"/"} title="home" rel="go home">
               <Image
@@ -49,6 +59,7 @@ export default function ForgotPassword() {
                 height={150}
                 src="/images/logo.png"
                 alt=""
+                className=""
               />
             </a>
           </div>

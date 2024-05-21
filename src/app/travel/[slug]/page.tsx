@@ -11,7 +11,6 @@ import ImageComp from "@/app/travel/[slug]/ImageComp";
 import { fetchTourList } from "@/actions/tour";
 import ListTourHot from "@/components/tour/list-tour-hot";
 import TravelNewsList from "@/components/home/travel-news";
-import LocationlLandmarks from "@/components/blogs/locationl-landmarks";
 
 export default async function TravelPage({
   params,
@@ -87,9 +86,7 @@ export default async function TravelPage({
       <div className="flex flex-col justify-center mt-10 gap-4 text-main text-2xl md:text-3xl text-center">
         <ListTourHot />
       </div>
-      <div className="flex flex-col justify-center mt-10 gap-4 text-main text-2xl md:text-3xl text-center">
-        <LocationlLandmarks slug={slug} />
-      </div>
+
       <div className="flex flex-col justify-center mt-10 gap-4 text-main text-2xl md:text-3xl text-center">
         <TravelNewsList slug={slug} />
       </div>

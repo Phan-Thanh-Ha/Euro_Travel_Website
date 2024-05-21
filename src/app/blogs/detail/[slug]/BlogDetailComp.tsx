@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React from "react";
 
@@ -26,9 +27,9 @@ export default function BlogDetailComp({ content }: Props) {
           <h4 className="text-xl font-extralight text-center my-5">Bài viết chưa có nội dung ! !</h4>
           <div className="flex justify-center items-center">
             <Link href={"/blogs"}>
-              <button className="bg-amber-400 py-3 px-6 rounded-sm m-2">
+              <Button className="py-3 px-6 rounded-sm m-2">
                 Xem bài viết khác
-              </button>
+              </Button>
             </Link>
 
           </div>

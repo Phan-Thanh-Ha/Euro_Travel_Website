@@ -5,12 +5,12 @@ export default function LoginByGoogle() {
   return (
     <div className="rounded-full">
       <button
-        className=" pl-16 hover:bg-slate-50 w-full border py-2 gap-4 rounded-md"
+        className="pl-10 md:pl-16 hover:bg-slate-50 w-full border py-2 gap-4 rounded-md"
         onClick={() =>
           signIn("google", { callbackUrl: "/dashboard" })
         }
       >
-        <div className="flex items-center gap-10">
+        <div className="flex items-center gap-4 md:gap-10">
           <Image
             width={35}
             height={35}

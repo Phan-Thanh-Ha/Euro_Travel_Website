@@ -9,9 +9,14 @@ type TravelBlogSiteManagement = {
 };
 
 export default async function TravelNewsList(items: TravelBlogSiteManagement) {
-  const HandBookList = await FetchNews({
+  /* const HandBookList = await FetchNews({
     Url: "/" + items.slug,
+  }); */
+  const HandBookList = await fetchHandBook({
+    Take: 100,
+    Url: "/tin-du-lich",
   });
+
   return (
     <div className="lg:container px-2  md:px-0  mt-12">
       <div className="flex flex-row items-center justify-between  px-2 md:px-0">

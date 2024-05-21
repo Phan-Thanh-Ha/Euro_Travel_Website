@@ -27,12 +27,13 @@ const formSchema = z.object({
   end: z.string().optional(),
   date: z.date().optional(),
   price: z.array(z.number()).optional(),
+  day: z.string().optional(),
 });
 
 //   .strict();
 interface FilterForm extends React.ComponentProps<"form"> {
-  setOpen: (open: boolean) => void;
-  setIsLogin: (isLogin: boolean) => void;
+  className: string;
+  setTour: (tour: any) => void;
 }
 
 export type FilterType = z.TypeOf<typeof formSchema>;
@@ -59,6 +60,7 @@ export default function FilterTour({ className, setTour }: FilterForm) {
       end: "",
       date: new Date(),
       price: [1, 200],
+      day: "",
     },
   });
   const debounce = (func: Function, delay: number) => {
@@ -78,10 +80,10 @@ export default function FilterTour({ className, setTour }: FilterForm) {
       const response = await fetchFilterTour({
         StartPlace: start?.value,
         EndPlace: end?.Id,
-        Day: "",
-        PriceFrom: 0,
-        PriceTo: 200000000,
-        Date: format(values.date, "MM"),
+        Day: values.day,
+        PriceFrom: values.price[0] * 1000000,
+        PriceTo: values.price[1] * 1000000,
+        Date: format(new Date(), "MM"),
       });
       setTour(response);
     } catch (error) {
@@ -148,7 +150,7 @@ export default function FilterTour({ className, setTour }: FilterForm) {
         />
         <FormField
           control={form.control}
-          name="date"
+          name="day"
           render={({ field }) => (
             <FormItem className="flex flex-col w-full  h-full justify-end">
               <FormLabel className="font-bold text-base text-blue-default">
@@ -158,36 +160,36 @@ export default function FilterTour({ className, setTour }: FilterForm) {
 
               <FormControl>
                 <ToggleGroup
-                  type="multiple"
+                  type="single"
                   variant="outline"
                   className="grid grid-cols-2 gap-2"
                   onValueChange={(value) => {
-                    console.log(value);
+                    field.onChange(value);
                   }}
                 >
                   <ToggleGroupItem
-                    value="1"
+                    value="1-3 ngày"
                     aria-label="Toggle bold"
                     className="data-[state=on]:bg-main data-[state=on]:text-white"
                   >
                     1-3 ngày
                   </ToggleGroupItem>
                   <ToggleGroupItem
-                    value="2"
+                    value="4-7 ngày"
                     aria-label="Toggle bold"
                     className="data-[state=on]:bg-main data-[state=on]:text-white"
                   >
                     4-7 ngày
                   </ToggleGroupItem>
                   <ToggleGroupItem
-                    value="3"
+                    value="8-14 ngày"
                     aria-label="Toggle italic"
                     className="data-[state=on]:bg-main data-[state=on]:text-white"
                   >
                     8-14 ngày
                   </ToggleGroupItem>
                   <ToggleGroupItem
-                    value="4"
+                    value="Trên 14 ngày"
                     aria-label="Toggle strikethrough "
                     className="data-[state=on]:bg-main data-[state=on]:text-white"
                   >
