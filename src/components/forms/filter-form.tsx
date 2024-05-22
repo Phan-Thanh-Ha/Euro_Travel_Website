@@ -34,11 +34,12 @@ const formSchema = z.object({
 interface FilterForm extends React.ComponentProps<"form"> {
   className: string;
   setTour: (tour: any) => void;
+  filter: {};
 }
 
 export type FilterType = z.TypeOf<typeof formSchema>;
 
-export default function FilterTour({ className, setTour }: FilterForm) {
+export default function FilterTour({ className, setTour, filter }: FilterForm) {
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();
   const [country, setCountry] = React.useState([]);
@@ -63,6 +64,16 @@ export default function FilterTour({ className, setTour }: FilterForm) {
       day: "",
     },
   });
+  const { setValue } = form;
+
+  React.useEffect(() => {
+    if (Object.values(filter)?.length > 0) {
+      let start = startPlaceOptions.find((x) => x.value === +filter.StartPlace);
+      let end = country.find((x: any) => x.Id === +filter.EndPlace);
+      setValue("start", start?.label);
+      setValue("end", end?.Name);
+    }
+  }, [filter, country]);
   const debounce = (func: Function, delay: number) => {
     let timer: ReturnType<typeof setTimeout>;
     return function (this: any, ...args: any[]) {

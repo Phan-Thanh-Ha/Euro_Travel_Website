@@ -25,8 +25,10 @@ import FilterTour from "@/components/forms/filter-form";
 
 export default function DiaLogFilterTour({
   setTour,
+  filter,
 }: {
   setTour: (tour: any) => void;
+  filter: any;
 }) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [isSubmitSuccess, setIsSubmitSuccess] = React.useState(false);
@@ -87,7 +89,7 @@ export default function DiaLogFilterTour({
                 </DrawerDescription> */}
           </DrawerHeader>
           <div className="p-4">
-            <FilterTour setTour={setTour} className="" />
+            <FilterTour setTour={setTour} className="" filter={filter} />
           </div>
         </DrawerContent>
       </Drawer>

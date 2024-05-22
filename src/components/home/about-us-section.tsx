@@ -32,12 +32,14 @@ export default function AboutUsSection({ setting }: { setting: any }) {
               <span className="text-main"> EuroTravel</span> - Đối tác du lịch
               tận tâm, mang đến trải nghiệm Châu Âu đích thực.
             </h2>
-            <p className="font-medium text-two">
-              EuroTravel - Đối tác du lịch tận tâm, mang đến trải nghiệm Châu Âu
-              đích thực. Từ những kỳ nghỉ thiên nhiên đến những chuyến tham quan
-              văn hóa, EuroTravel sẵn sàng đồng hành cùng bạn khám phá những
-              điều tuyệt vời nhất tại Châu Âu.
-            </p>
+            {setting?.Home_AboutUsContent && (
+              <p
+                className="font-medium text-two"
+                dangerouslySetInnerHTML={{
+                  __html: setting?.Home_AboutUsContent,
+                }}
+              ></p>
+            )}
             <Link href={"/search"}>
               <Button
                 className="md:text-xl mt-5 bg-two/80 p-4  md:p-6 text-white hover:bg-main/80 hover:text-white font-semibold flex flex-row gap-2 items-center"

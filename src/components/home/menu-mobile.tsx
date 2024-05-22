@@ -113,13 +113,13 @@ export default function MenuMobile({
                 className="w-full h-full text-two p-4 "
               >
                 <RenderMenu />
-                <div className="flex items-center py-4 border-b">
+                {/* <div className="flex items-center py-4 border-b">
                   <a href={"/dashboard"}>
                     <button className="flex items-center pr-4">
                       <span className="font-bold">Khách hàng</span>
                     </button>
                   </a>
-                </div>
+                </div> */}
               </Accordion>
             </ScrollArea>
           </div>

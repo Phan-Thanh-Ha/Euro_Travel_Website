@@ -35,7 +35,7 @@ const LocationlLandmarks = async (items: TravelBlogSiteManagement) => {
               HandBookList.map((item: any, index: number) => (
                 <CarouselItem
                   key={index}
-                  className="  rounded-lg  pl-3  md:basis-1/3 basis-[85%] "
+                  className="  rounded-lg  pl-4  md:basis-1/3 basis-[85%] "
                 >
                   <BlogCardItemPlaceHot item={item} />
                 </CarouselItem>

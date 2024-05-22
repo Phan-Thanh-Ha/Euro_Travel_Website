@@ -19,10 +19,17 @@ export default async function TravelNewsList(items: TravelBlogSiteManagement) {
 
   return (
     <div className="lg:container px-2  md:px-0  mt-12">
-      <div className="flex flex-row items-center justify-between  px-2 md:px-0">
-        <h2 className="md:text-2xl text-base font-bold text-main my-4 md:mb-4 md:mt-8  uppercase">
+      <div className="flex justify-between items-center px-2">
+        <h2 className="md:text-2xl text-base font-bold text-main my-4   uppercase">
           TIN TỨC DU LỊCH
         </h2>
+        <Link
+          href="/cam-nang/tin-du-lich"
+          className="flex flex-row gap-1 items-center text-sm md:text-base underline text-main font-semibold flex-none"
+        >
+          Xem thêm
+          <ArrowRightIcon />
+        </Link>
       </div>
 
       <BlogsListCarosel data={HandBookList} />

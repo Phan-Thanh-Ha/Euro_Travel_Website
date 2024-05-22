@@ -65,7 +65,7 @@ export default async function ListTourHot({ title = " Tour du lịch nổi bật
                 key={index}
                 className="  rounded-lg  pl-4  md:basis-1/3 basis-[85%] "
               >
-                <TourItem data={item} />
+                <TourItem data={item} quantityDate={9} />
               </CarouselItem>
             );
           })}

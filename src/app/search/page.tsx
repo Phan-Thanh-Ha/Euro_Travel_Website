@@ -15,7 +15,14 @@ function SearchPageContent() {
   const start = searchParams.get("s");
   const end = searchParams.get("e");
   const date = searchParams.get("d");
-
+  const [filter, setFilter] = useState({
+    StartPlace: 1,
+    EndPlace: 1,
+    Day: "",
+    PriceFrom: 0,
+    PriceTo: 200000000,
+    Date: format(new Date(), "MM"),
+  });
   const [tour, setTour] = useState([]);
   useEffect(() => {
     searchFirst();
@@ -23,6 +30,15 @@ function SearchPageContent() {
 
   const searchFirst = async () => {
     try {
+      if (start && end) {
+        setFilter({
+          ...filter,
+          StartPlace: start,
+          EndPlace: end,
+          Date: date,
+          Day: "",
+        });
+      }
       const response = await fetchFilterTour({
         StartPlace: start,
         EndPlace: end,
@@ -62,7 +78,7 @@ function SearchPageContent() {
           <h2 className="text-xl font-semibold text-blue-default mb-5">
             Bộ lọc tìm kiếm
           </h2>
-          <FilterTour setTour={setTour} className="" />
+          <FilterTour setTour={setTour} className="" filter={filter} />
         </div>
         <div className="main flex-1 col-span-3 px-2 md:px-0">
           <h2 className="text-2xl md:text-3xl font-semibold text-center text-main mb-2">
@@ -76,7 +92,7 @@ function SearchPageContent() {
               quý khách
             </p>
             <div className="md:hidden w-full mr-2">
-              <DiaLogFilterTour setTour={setTour} />
+              <DiaLogFilterTour setTour={setTour} filter={filter} />
             </div>
             <div>
               <SortComponent tour={tour} setTour={setTour} />

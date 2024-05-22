@@ -11,6 +11,8 @@ import ImageComp from "@/app/travel/[slug]/ImageComp";
 import { fetchTourList } from "@/actions/tour";
 import ListTourHot from "@/components/tour/list-tour-hot";
 import TravelNewsList from "@/components/home/travel-news";
+import ContentPage from "@/app/travel/[slug]/content-page";
+import LocationlLandmarks from "@/components/blogs/locationl-landmarks";
 
 export default async function TravelPage({
   params,
@@ -46,28 +48,7 @@ export default async function TravelPage({
           ]}
         />
       </div>
-      <div className="content flex flex-row gap-4">
-        <div className="basis-[289px] w-full sticky top-[100px] filter p-4 bg-slate-50 shadow-sm h-fit hidden lg:block">
-          <h2 className="text-xl font-semibold text-blue-default mb-5">
-            Bộ lọc tìm kiếm
-          </h2>
-          <FilterTour />
-        </div>
-        <div className="main flex-1 col-span-3 px-2 md:px-0 ">
-          <h2 className="text-2xl md:text-3xl font-semibold text-center text-main mb-2">
-            {data.ContentName}
-          </h2>
-          <div dangerouslySetInnerHTML={{ __html: data?.ContentIntro || "" }} />
-
-          <div className="flex justify-between items-center py-5">
-            <p>Chúng tôi tìm thấy xx tour cho quý khách</p>
-            <div>
-              <SortComponent sort={"1"} />
-            </div>
-          </div>
-          <TourList tour={tour} />
-        </div>
-      </div>
+      <ContentPage tours={tour} data={data} />
       <div>
         <TravelContentComp content={data} />
       </div>
@@ -86,7 +67,9 @@ export default async function TravelPage({
       <div className="flex flex-col justify-center mt-10 gap-4 text-main text-2xl md:text-3xl text-center">
         <ListTourHot />
       </div>
-
+      <div className="flex flex-col justify-center mt-10 gap-4 text-main text-2xl md:text-3xl text-center">
+        <LocationlLandmarks slug={slug} />
+      </div>
       <div className="flex flex-col justify-center mt-10 gap-4 text-main text-2xl md:text-3xl text-center">
         <TravelNewsList slug={slug} />
       </div>

@@ -47,6 +47,7 @@ export const handleDataSetting = async (settingData: any[]) => {
     ImageAboutUsHome,
     BgFooter,
     Bg,
+    Home_AboutUsContent,
   } = settings;
   let LogoUrl = envConfig.NEXT_PUBLIC_CDN + Logo?.replace(",", "");
   let ImageABoutUsUrl =
@@ -98,6 +99,7 @@ export const handleDataSetting = async (settingData: any[]) => {
     ImageAboutUsHome: ImageAboutUsHomeUrl,
     BgFooter: BgFooterUrl,
     Bg: BgUrl,
+    Home_AboutUsContent,
   };
   return data;
 };

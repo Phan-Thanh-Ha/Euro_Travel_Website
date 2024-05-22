@@ -7,7 +7,7 @@ interface FetchTourList {
 export const fetchTourList = async (data: FetchTourList) => {
   try {
     return await fetchMethod(data, "Trl_spTourManagement_List");
-  } catch (error) { }
+  } catch (error) {}
 };
 //#endregion
 
@@ -19,7 +19,7 @@ interface FetchTourGroup2 {
 export const fetchTourGroups = async (data: FetchTourGroup2) => {
   try {
     return await fetchMethod(data, "Trl_spTourGroups_List");
-  } catch (error) { }
+  } catch (error) {}
 };
 //#endregion
 
@@ -32,7 +32,7 @@ export const fetchTour = async (data: FetchTour) => {
   try {
     let res = await fetchMethod(data, "Trl_spTourManagement_Detail");
     return res;
-  } catch (error) { }
+  } catch (error) {}
 };
 //#endregion
 
@@ -43,7 +43,7 @@ interface FetchTourListNew {
 export const fetchTourListNew = async (data: FetchTourListNew) => {
   try {
     return await fetchMethod(data, "CMS_spBlogs_Tour_List");
-  } catch (error) { }
+  } catch (error) {}
 };
 // #endregion
 
@@ -59,7 +59,7 @@ interface infFilter {
 export const fetchFilterTour = async (data: infFilter) => {
   try {
     return await fetchMethod(data, "CMS_spTour_Filter");
-  } catch (error) { }
+  } catch (error) {}
 };
 // #endregion
 
@@ -75,7 +75,7 @@ interface paramTour {
 export const registerTourNew = async (data: paramTour) => {
   try {
     return await fetchMethod(data, "CMS_spBookingTour_Save");
-  } catch (error) { }
+  } catch (error) {}
 };
 // #endregion
 
@@ -87,6 +87,6 @@ interface FetchTourHot {
 
 export const fetchListTourHot = async (data: FetchTourHot) => {
   try {
-    return await fetchMethod(data, "Trl_spTourManagement_List");
-  } catch (error) { }
-}
+    return await fetchMethod(data, "Trl_spTourManagement_List_IsHot");
+  } catch (error) {}
+};

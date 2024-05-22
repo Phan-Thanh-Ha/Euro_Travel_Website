@@ -9,13 +9,13 @@ const BlogCardItemPlaceHot: React.FC<CardProps> = ({ item }) => {
   return (
     <div className="relative flex flex-col h-full rounded-lg overflow-hidden cursor-pointer group">
       <Link href={item?.Url}>
-        <div className="relative w-full h-[500px]">
+        <div className="relative w-full h-[400px]">
           <Image
             src={envConfig.NEXT_PUBLIC_CDN + item?.Images.split(",")[0]}
             alt="nature"
             width={600}
             height={600}
-            className="w-full h-[500px] object-cover transform transition-transform duration-500 ease-in-out group-hover:scale-110"
+            className="w-full h-[400px] object-cover transform transition-transform duration-500 ease-in-out group-hover:scale-110"
           />
           <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition duration-600"></div>
           <span className="absolute bottom-2 z-20 w-9/12 drop-shadow-md uppercase left-1/2 transform -translate-x-1/2 translate-y-0 text-white  text-base transition-all duration-500 ease-in-out group-hover:translate-y-[-50%] group-hover:top-1/2 group-hover:text-xl ">
